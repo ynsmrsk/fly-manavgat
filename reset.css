@@ -1,0 +1,95 @@
+:root {
+  interpolate-size: allow-keywords;
+  scroll-behavior: smooth;
+  color-scheme: dark light;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.4;
+  letter-spacing: 0.015rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: system-ui, sans-serif;
+  min-height: 100dvh;
+}
+
+dialog {
+  border: none;
+}
+
+:is(img, picture, video, canvas, svg) {
+  display: block;
+  max-inline-size: 100%;
+}
+
+img {
+  object-fit: cover;
+}
+
+:is(span, p, h1, h2, h3, h4, h5, h6) {
+  overflow-wrap: break-word;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  text-wrap: balance;
+}
+
+:is(p, li, figcaption) {
+  text-wrap: pretty;
+}
+
+:is(h1, h2, h3, h4, button, input, label) {
+  line-height: 1.1;
+}
+
+:is(input, button, textarea, select) {
+  accent-color: var(--color-accent, initial);
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+textarea:not([rows]) {
+  min-height: 10em;
+  resize: none;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+ul:not([role="list"]),
+ol:not([role="list"]) {
+  padding-left: var(--space-s);
+}
+
+:target {
+  scroll-margin-block: 5ex;
+}
+
+a {
+  color: currentColor;
+  text-underline-offset: 0.1em;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  :is(nav) & {
+    text-decoration: none;
+  }
+}
+
+:is(a, button, select, textarea, input, summary, canvas):focus-visible {
+  outline: 1.6px solid canvasText;
+  outline-offset: 4px;
+}

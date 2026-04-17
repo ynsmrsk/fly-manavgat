@@ -1,0 +1,71 @@
+:root {
+  --color-blue-light: #1095ed;
+  --color-blue-dark: #0563E9;
+  --color-light: #f3f3f3;
+
+  --step--1: clamp(0.7499rem, 0.9808rem + -0.1925vw, 0.9375rem);
+  --step-0: clamp(1.125rem, 1.0962rem + 0.1282vw, 1.25rem);
+  --step-1: clamp(1.35rem, 1.1807rem + 0.7526vw, 2.0838rem);
+  --step-2: clamp(1.62rem, 1.1922rem + 1.9011vw, 3.4736rem);
+  --step-3: clamp(1.944rem, 1.0563rem + 3.9451vw, 5.7905rem);
+  --step-4: clamp(2.3328rem, 0.6436rem + 7.5077vw, 9.6528rem);
+  --step-5: clamp(2.7994rem, -0.268rem + 13.6326vw, 16.0912rem);
+
+  --space-3xs: clamp(0.25rem, 0.2313rem + 0.0829vw, 0.3125rem);
+  --space-2xs: clamp(0.5rem, 0.4627rem + 0.1658vw, 0.625rem);
+  --space-xs: clamp(0.75rem, 0.694rem + 0.2488vw, 0.9375rem);
+  --space-s: clamp(1rem, 0.9254rem + 0.3317vw, 1.25rem);
+  --space-m: clamp(1.5rem, 1.3881rem + 0.4975vw, 1.875rem);
+  --space-l: clamp(2rem, 1.8507rem + 0.6633vw, 2.5rem);
+  --space-xl: clamp(3rem, 2.7761rem + 0.995vw, 3.75rem);
+  --space-2xl: clamp(4rem, 3.7015rem + 1.3267vw, 5rem);
+  --space-3xl: clamp(6rem, 5.5522rem + 1.99vw, 7.5rem);
+
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.25rem, 0.1381rem + 0.4975vw, 0.625rem);
+  --space-2xs-xs: clamp(0.5rem, 0.3694rem + 0.5804vw, 0.9375rem);
+  --space-xs-s: clamp(0.75rem, 0.6007rem + 0.6633vw, 1.25rem);
+  --space-s-m: clamp(1rem, 0.7388rem + 1.1609vw, 1.875rem);
+  --space-m-l: clamp(1.5rem, 1.2015rem + 1.3267vw, 2.5rem);
+  --space-l-xl: clamp(2rem, 1.4776rem + 2.3217vw, 3.75rem);
+  --space-xl-2xl: clamp(3rem, 2.403rem + 2.6534vw, 5rem);
+  --space-2xl-3xl: clamp(4rem, 2.9552rem + 4.6434vw, 7.5rem);
+
+  /* Custom pairs */
+  --space-xs-xl: clamp(0.75rem, -0.1455rem + 3.9801vw, 3.75rem);
+  --space-s-l: clamp(1rem, 0.5522rem + 1.99vw, 2.5rem);
+  --space-m-xl: clamp(1.5rem, 0.8284rem + 2.9851vw, 3.75rem);
+  --space-s-2xl: clamp(1rem, -0.194rem + 5.3068vw, 5rem);
+  --space-l-2xl: clamp(2rem, 1.1045rem + 3.9801vw, 5rem);
+
+  --gutter: var(--space-s-m);
+
+  --ease-in-out-expo: cubic-bezier(0.75, 0, 0.25, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --radius: 0.5em;
+  --radius-m: 1em;
+  --radius-l: 2em;
+}
+
+body {
+  font-family: "Helvetica Neue", system-ui;
+  background-color: var(--color-light);
+  color: var(--color-light);
+}
+
+h1 {
+  font-size: var(--step-4);
+}
+
+h2 {
+  font-size: var(--step-3);
+}
+
+h3 {
+  font-size: var(--step-1);
+}
+
+p {
+  font-size: var(--step-0);
+}
