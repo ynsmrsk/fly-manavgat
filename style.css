@@ -29,6 +29,9 @@
   --color-text-soft: rgba(255, 255, 255, 0.78);
   --line-soft: rgba(255, 255, 255, 0.16);
   --surface-soft: rgba(255, 255, 255, 0.1);
+  --surface-strong: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.34);
+  --glass-highlight: rgba(255, 255, 255, 0.48);
   --nav-gradient:
     linear-gradient(
       to bottom,
@@ -176,8 +179,6 @@ header.hero {
 }
 
 section[class] {
-  border-top: 1px solid var(--line-soft);
-
   > div {
     display: grid;
     justify-items: center;
@@ -190,6 +191,101 @@ section[class] {
 
   p {
     max-width: 38rem;
+  }
+}
+
+section.contact {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding-block: clamp(7rem, 12vw, 10rem);
+  padding-inline: var(--space-m-xl);
+  background-image: url("./images/manavgat.jpg");
+  background-position: center;
+  background-size: cover;
+
+  > div {
+    width: min(100%, 1566px);
+    margin-inline: auto;
+    min-height: min(70rem, 100vh);
+    align-items: center;
+  }
+
+  article {
+    width: min(100%, 42rem);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 2px solid rgba(255, 255, 255, 0.72);
+    border-radius: 2rem;
+    background: rgba(244, 250, 255, 0.78);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      0 1.5rem 4rem rgba(25, 94, 175, 0.14);
+    color: #275793;
+    backdrop-filter: blur(8px);
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #4d8fe2;
+      font-size: clamp(2.75rem, 6vw, 4.25rem);
+    }
+
+    > p {
+      max-width: 30rem;
+      margin-inline: auto;
+      margin-bottom: 1.75rem;
+      color: #4974a7;
+    }
+  }
+
+  form {
+    display: grid;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  label {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  span {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #3e6ea7;
+  }
+
+  :is(input, textarea) {
+    width: 100%;
+    padding: 1rem 1.1rem;
+    border: 2px solid rgba(255, 255, 255, 0.82);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.58);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+    color: #2e5b92;
+  }
+
+  :is(input, textarea)::placeholder {
+    color: rgba(78, 114, 160, 0.78);
+  }
+
+  textarea {
+    min-height: 10rem;
+  }
+
+  button {
+    justify-self: start;
+    padding: 0.95rem 1.4rem;
+    border: 2px solid rgba(255, 255, 255, 0.72);
+    border-radius: 999px;
+    background: linear-gradient(180deg, #73adff 0%, #4f8ef0 100%);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.44),
+      0 1rem 2rem rgba(31, 103, 188, 0.2);
+    cursor: pointer;
   }
 }
 
@@ -213,5 +309,11 @@ section[class] {
   header.hero {
     min-height: auto;
     padding-top: var(--space-xl);
+  }
+
+  section.contact {
+    article {
+      border-radius: 1.5rem;
+    }
   }
 }
