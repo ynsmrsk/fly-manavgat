@@ -1,3 +1,5 @@
+import { Blossom } from 'https://esm.sh/@blossom-carousel/core@1.1.0'
+
 const messages = {
   tr: {
     meta: {
@@ -23,7 +25,17 @@ const messages = {
     },
     experience: {
       title: 'Uçuş Deneyimi',
-      text: 'Tandem uçuşun nasıl ilerlediği, kimlerin katılabildiği ve günün nasıl geçtiği bu bölümde yer alacak.'
+      text: 'Uçuş gününün zirveye çıkıştan sahile inişe kadar nasıl aktığını adım adım keşfedin.',
+      card_1_title: 'Zirveye Teleferik',
+      card_1_text: 'Kalkış noktasına teleferikle ulaşın ve yaklaşık 15 dakikalık yolculuk boyunca Ölüdeniz manzarasının keyfini çıkarın.',
+      card_2_title: 'Uçuş Öncesi Brifing',
+      card_2_text: 'T2 sertifikalı pilotlarımız size kısa bir brifing verir ve aklınızdaki tüm soruları cevaplar.',
+      card_3_title: 'Kalkış',
+      card_3_text: 'Sadece birkaç adım koşun ve dünyanın en güzel sahillerinden birinin üzerinde süzülmeye başlayın.',
+      card_4_title: 'Uçuş',
+      card_4_text: "20–30 dakika boyunca süzülün ve unutulmaz anlar yaşayın. İsterseniz biraz adrenalin için akrobatik hareketler de eklenebilir.",
+      card_5_title: 'İniş',
+      card_5_text: 'Ölüdeniz sahiline yumuşak bir iniş yapın. Ofisimiz sadece birkaç adım ötede; fotoğraf ve videolarınızla bu anı ölümsüzleştirin.'
     },
     reasons: {
       title: 'Neden Biz',
@@ -103,7 +115,17 @@ const messages = {
     },
     experience: {
       title: 'Flight Experience',
-      text: 'This section will explain how the tandem flight works, who can join and how the day unfolds.'
+      text: 'Discover step by step how the day flows from the summit ride to the beach landing.',
+      card_1_title: 'Cable Car to the Summit',
+      card_1_text: 'Reach the launch site by cable car and enjoy the panoramic views of Ölüdeniz throughout the 15-minute ride.',
+      card_2_title: 'Pre-Flight Briefing',
+      card_2_text: 'Our T2-certified pilots give you a quick briefing, and you can ask any questions on your mind.',
+      card_3_title: 'Takeoff',
+      card_3_text: 'Just run a few steps and start soaring above one of the most beautiful beaches in the world.',
+      card_4_title: 'The Flight',
+      card_4_text: "Glide for 20–30 minutes and experience unforgettable moments — add some excitement with acrobatic moves if you'd like.",
+      card_5_title: 'Landing',
+      card_5_text: 'Touch down gently on Ölüdeniz beach. Our office is just steps away — immortalize the moment with your photos and video.'
     },
     reasons: {
       title: 'Why Us',
@@ -165,6 +187,37 @@ const storageKey = 'locale'
 
 const get = (obj, path) => path.split('.').reduce((acc, key) => acc?.[key], obj)
 
+const faqLists = [...document.querySelectorAll('[data-faq]')]
+
+const measureFaqHeights = () => {
+  faqLists.forEach(list => {
+    list.querySelectorAll('details').forEach(item => {
+      const answer = item.querySelector('.content')
+
+      if (!answer) return
+
+      const wasOpen = item.open
+
+      if (!wasOpen) item.open = true
+
+      const height = Math.ceil(answer.scrollHeight)
+      item.style.setProperty('--faq-content-height', `${height}px`)
+
+      if (!wasOpen) item.open = false
+    })
+  })
+}
+
+const initializeFaq = () => {
+  measureFaqHeights()
+}
+
+const initializeCarousels = () => {
+  document.querySelectorAll('[data-carousel]').forEach(element => {
+    Blossom(element).init()
+  })
+}
+
 const getInitialLocale = () => {
   const savedLocale = localStorage.getItem(storageKey)
 
@@ -212,6 +265,9 @@ const applyLocale = locale => {
   })
 
   localStorage.setItem(storageKey, activeLocale)
+  requestAnimationFrame(() => {
+    measureFaqHeights()
+  })
 }
 
 document.documentElement.classList.add('js-ready')
@@ -223,6 +279,10 @@ document.querySelectorAll('[data-lang-switch]').forEach(button => {
 })
 
 applyLocale(getInitialLocale())
+initializeFaq()
+initializeCarousels()
+
+window.addEventListener('resize', measureFaqHeights)
 
 const gallery = document.getElementById('galleryGrid')
 const modal = document.getElementById('galleryModal')

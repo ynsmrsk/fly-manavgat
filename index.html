@@ -12,19 +12,20 @@
   <title>Fly Manavgat</title>
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./base.css">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@blossom-carousel/core/dist/blossom-carousel-core.css"
+  >
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./script.js"></script>
 </head>
 <body>
   <main class="page">
     <nav class="nav" data-i18n-aria-label="nav.aria" aria-label="Ana navigasyon">
-      <div>
+      <div class="container">
         <ul role="list">
           <li><a href="#experience" data-i18n="nav.experience">Uçuş Deneyimi</a></li>
-          <li><a href="#reasons" data-i18n="nav.reasons">Neden Biz</a></li>
-          <li><a href="#pricing" data-i18n="nav.pricing">Paketler</a></li>
           <li><a href="#gallery" data-i18n="nav.gallery">Galeri</a></li>
-          <li><a href="#testimonials" data-i18n="nav.testimonials">Yorumlar</a></li>
           <li><a href="#faq" data-i18n="nav.faq">Sık Sorulanlar</a></li>
           <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
         </ul>
@@ -41,7 +42,7 @@
     </nav>
 
     <header class="hero">
-      <div id="top">
+      <div class="container" id="top">
         <p data-i18n="hero.eyebrow">Paraglide Manavgat Alanya</p>
         <h1>FLY MANAVGAT</h1>
         <p data-i18n="hero.text">Akdeniz kıyısında hafif, güvenli ve etkileyici tandem uçuş deneyimi</p>
@@ -49,28 +50,67 @@
     </header>
 
     <section class="experience" id="experience">
-      <div>
+      <div class="container">
         <h2 data-i18n="experience.title">Uçuş Deneyimi</h2>
-        <p data-i18n="experience.text">Tandem uçuşun nasıl ilerlediği, kimlerin katılabildiği ve günün nasıl geçtiği bu bölümde yer alacak.</p>
+        <p data-i18n="experience.text">Uçuş gününün zirveye çıkıştan sahile inişe kadar nasıl aktığını adım adım keşfedin.</p>
+      </div>
+      <div class="carousel-block">
+        <div class="carousel" data-carousel>
+          <div class="slide">
+            <article>
+              <img src="./images/alanya-wide.jpg" alt="Cable car to the summit" loading="lazy">
+              <h3 data-i18n="experience.card_1_title">Cable Car to the Summit</h3>
+              <p data-i18n="experience.card_1_text">Reach the launch site by cable car and enjoy the panoramic views of Ölüdeniz throughout the 15-minute ride.</p>
+            </article>
+          </div>
+          <div class="slide">
+            <article>
+              <img src="./images/parachute-1.jpg" alt="Pre-flight briefing" loading="lazy">
+              <h3 data-i18n="experience.card_2_title">Pre-Flight Briefing</h3>
+              <p data-i18n="experience.card_2_text">Our T2-certified pilots give you a quick briefing, and you can ask any questions on your mind.</p>
+            </article>
+          </div>
+          <div class="slide">
+            <article>
+              <img src="./images/parachute-2.jpg" alt="Takeoff" loading="lazy">
+              <h3 data-i18n="experience.card_3_title">Takeoff</h3>
+              <p data-i18n="experience.card_3_text">Just run a few steps and start soaring above one of the most beautiful beaches in the world.</p>
+            </article>
+          </div>
+          <div class="slide">
+            <article>
+              <img src="./images/parachute-vertical.jpg" alt="The flight" loading="lazy">
+              <h3 data-i18n="experience.card_4_title">The Flight</h3>
+              <p data-i18n="experience.card_4_text">Glide for 20–30 minutes and experience unforgettable moments — add some excitement with acrobatic moves if you'd like.</p>
+            </article>
+          </div>
+          <div class="slide">
+            <article>
+              <img src="./images/manavgat.jpg" alt="Landing" loading="lazy">
+              <h3 data-i18n="experience.card_5_title">Landing</h3>
+              <p data-i18n="experience.card_5_text">Touch down gently on Ölüdeniz beach. Our office is just steps away — immortalize the moment with your photos and video.</p>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="reasons" id="reasons">
-      <div>
+      <div class="container">
         <h2 data-i18n="reasons.title">Neden Biz</h2>
         <p data-i18n="reasons.text">Deneyimli pilotlar, güvenlik odaklı operasyon ve Manavgat Alanya hattına hakim yerel ekip anlatılacak.</p>
       </div>
     </section>
 
     <section class="pricing" id="pricing">
-      <div>
+      <div class="container">
         <h2 data-i18n="pricing.title">Paketler</h2>
         <p data-i18n="pricing.text">Standart uçuş, medya paketleri ve rezervasyon akışı burada net bir yapıyla sunulacak.</p>
       </div>
     </section>
 
     <section class="gallery" id="gallery">
-      <div>
+      <div class="container">
         <h2 data-i18n="gallery.title">Galeri</h2>
         <p data-i18n="gallery.text">Uçuşlardan kareler, manzara detayları ve görsel hikaye bu alana eklenecek.</p>
         <ul role="list" id="galleryGrid">
@@ -126,7 +166,7 @@
     </section>
 
     <section class="testimonials" id="testimonials">
-      <div>
+      <div class="container">
         <h2 data-i18n="testimonials.title">Yorumlar</h2>
         <p data-i18n="testimonials.text">Misafirlerimizin uçuş günüyle ilgili anlattıkları kısa ve net deneyim notları burada yer alacak.</p>
         <ul role="list">
@@ -153,38 +193,70 @@
     </section>
 
     <section class="faq" id="faq">
-      <div>
+      <div class="container">
         <h2 data-i18n="faq.title">Sık Sorulanlar</h2>
         <p data-i18n="faq.text">İlk kez uçacak misafirlerin en çok sorduğu temel soruları burada kısa cevaplarla toplayacağız.</p>
-        <details open>
-          <summary data-i18n="faq.q1">Uçuş için belirli bir yaş veya kilo sınırı var mı?</summary>
-          <p data-i18n="faq.a1">Genel olarak 5–6 yaşından büyük herkes uçabilir. Genellikle kadınlar için kilo sınırı 90–100 kg, erkekler için ise 110–120 kg civarındadır.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q2">Uçuş ne kadar sürüyor?</summary>
-          <p data-i18n="faq.a2">Hava koşullarına ve seçtiğiniz uçuş stiline göre ortalama havada kalış süresi yaklaşık 25 dakikadır. Daha uzun uçmak isterseniz öğle saatlerini tercih edin ve bunu uçuş öncesinde pilotunuza belirtin.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q3">Hamileler veya kronik rahatsızlığı olanlar uçabilir mi?</summary>
-          <p data-i18n="faq.a3">Hamileler, kalp rahatsızlığı olanlar veya ciddi yüksek tansiyon problemi yaşayanlar için uçuş kesinlikle önerilmez.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q4">Uçuş sırasında ne giymeliyim?</summary>
-          <p data-i18n="faq.a4">Gözlerinizi rüzgardan korumak için güneş gözlüğü, koşu için spor ayakkabı ve mevsime uygun bir rüzgarlık önerilir. Babadağ zirvesi sahile göre 10–15 derece daha soğuk olabilir.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q5">Videoyu kendi telefonumla çekebilir miyim?</summary>
-          <p data-i18n="faq.a5">Güvenlik nedeniyle buna izin verilmez. Telefonun düşmesi hem sizin için kayıp yaratabilir hem de aşağıdaki insanlar için tehlike oluşturabilir. Kayıt için pilotlar profesyonel GoPro ekipmanı kullanır.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q6">Uçurumdan atlıyor muyuz?</summary>
-          <p data-i18n="faq.a6">Hayır, yamaç paraşütünde atlama yoktur. Birkaç adım yokuş aşağı koşarsınız, kanat havayla dolar ve sizi yumuşak şekilde yerden kaldırır.</p>
-        </details>
+        <div class="faq-list" data-faq>
+          <details name="morph" open>
+            <summary>
+              <span data-i18n="faq.q1">Uçuş için belirli bir yaş veya kilo sınırı var mı?</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="content">
+              <p data-i18n="faq.a1">Genel olarak 5–6 yaşından büyük herkes uçabilir. Genellikle kadınlar için kilo sınırı 90–100 kg, erkekler için ise 110–120 kg civarındadır.</p>
+            </div>
+          </details>
+          <details name="morph">
+            <summary>
+              <span data-i18n="faq.q2">Uçuş ne kadar sürüyor?</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="content">
+              <p data-i18n="faq.a2">Hava koşullarına ve seçtiğiniz uçuş stiline göre ortalama havada kalış süresi yaklaşık 25 dakikadır. Daha uzun uçmak isterseniz öğle saatlerini tercih edin ve bunu uçuş öncesinde pilotunuza belirtin.</p>
+            </div>
+          </details>
+          <details name="morph">
+            <summary>
+              <span data-i18n="faq.q3">Hamileler veya kronik rahatsızlığı olanlar uçabilir mi?</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="content">
+              <p data-i18n="faq.a3">Hamileler, kalp rahatsızlığı olanlar veya ciddi yüksek tansiyon problemi yaşayanlar için uçuş kesinlikle önerilmez.</p>
+            </div>
+          </details>
+          <details name="morph">
+            <summary>
+              <span data-i18n="faq.q4">Uçuş sırasında ne giymeliyim?</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="content">
+              <p data-i18n="faq.a4">Gözlerinizi rüzgardan korumak için güneş gözlüğü, koşu için spor ayakkabı ve mevsime uygun bir rüzgarlık önerilir. Babadağ zirvesi sahile göre 10–15 derece daha soğuk olabilir.</p>
+            </div>
+          </details>
+          <details name="morph">
+            <summary>
+              <span data-i18n="faq.q5">Videoyu kendi telefonumla çekebilir miyim?</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="content">
+              <p data-i18n="faq.a5">Güvenlik nedeniyle buna izin verilmez. Telefonun düşmesi hem sizin için kayıp yaratabilir hem de aşağıdaki insanlar için tehlike oluşturabilir. Kayıt için pilotlar profesyonel GoPro ekipmanı kullanır.</p>
+            </div>
+          </details>
+          <details name="morph">
+            <summary>
+              <span data-i18n="faq.q6">Uçurumdan atlıyor muyuz?</span>
+              <span class="faq-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="content">
+              <p data-i18n="faq.a6">Hayır, yamaç paraşütünde atlama yoktur. Birkaç adım yokuş aşağı koşarsınız, kanat havayla dolar ve sizi yumuşak şekilde yerden kaldırır.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
 
     <section class="contact" id="contact">
-      <div>
+      <div class="container">
         <article>
           <h2 data-i18n="contact.title">İletişim</h2>
           <p data-i18n="contact.text">Manavgat ve Alanya uçuşları için bize yazın. Size en uygun saat, paket ve hazırlık detaylarını iletelim.</p>
