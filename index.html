@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta
     name="description"
+    data-i18n-content="meta.description"
     content="Manavgat ve Alanya bölgesinde hizmet veren Fly Manavgat yamaç paraşütü website"
   >
   <meta name="theme-color" content="#0a3f91">
@@ -16,84 +17,232 @@
 </head>
 <body>
   <main class="page">
-    <nav class="nav" aria-label="Ana navigasyon">
+    <nav class="nav" data-i18n-aria-label="nav.aria" aria-label="Ana navigasyon">
       <div>
         <ul role="list">
-          <li><a href="#experience">Uçuş Deneyimi</a></li>
-          <li><a href="#reasons">Neden Biz</a></li>
-          <li><a href="#pricing">Paketler</a></li>
-          <li><a href="#gallery">Galeri</a></li>
-          <li><a href="#contact">İletişim</a></li>
+          <li><a href="#experience" data-i18n="nav.experience">Uçuş Deneyimi</a></li>
+          <li><a href="#reasons" data-i18n="nav.reasons">Neden Biz</a></li>
+          <li><a href="#pricing" data-i18n="nav.pricing">Paketler</a></li>
+          <li><a href="#gallery" data-i18n="nav.gallery">Galeri</a></li>
+          <li><a href="#testimonials" data-i18n="nav.testimonials">Yorumlar</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">Sık Sorulanlar</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
         </ul>
-        <a href="#top" aria-label="Fly Manavgat ana sayfa">
+        <a href="#top" data-i18n-aria-label="nav.home" aria-label="Fly Manavgat ana sayfa">
           <img src="./images/logo-glass-2-transparent.avif" alt="Fly Manavgat logo">
         </a>
         <div>
-          <a href="#contact">Bilgi Al</a>
-          <a href="#contact">Rezervasyon</a>
+          <button type="button" data-lang-switch="tr" aria-pressed="true">TR</button>
+          <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+          <a href="#contact" data-i18n="nav.info">Bilgi Al</a>
+          <a href="#contact" data-i18n="nav.booking">Rezervasyon</a>
         </div>
       </div>
     </nav>
 
     <header class="hero">
       <div id="top">
-        <p>Paraglide Manavgat Alanya</p>
+        <p data-i18n="hero.eyebrow">Paraglide Manavgat Alanya</p>
         <h1>FLY MANAVGAT</h1>
-        <p>Akdeniz kıyısında hafif, güvenli ve etkileyici tandem uçuş deneyimi</p>
+        <p data-i18n="hero.text">Akdeniz kıyısında hafif, güvenli ve etkileyici tandem uçuş deneyimi</p>
       </div>
     </header>
 
     <section class="experience" id="experience">
       <div>
-        <h2>Uçuş Deneyimi</h2>
-        <p>Tandem uçuşun nasıl ilerlediği, kimlerin katılabildiği ve günün nasıl geçtiği bu bölümde yer alacak.</p>
+        <h2 data-i18n="experience.title">Uçuş Deneyimi</h2>
+        <p data-i18n="experience.text">Tandem uçuşun nasıl ilerlediği, kimlerin katılabildiği ve günün nasıl geçtiği bu bölümde yer alacak.</p>
       </div>
     </section>
 
     <section class="reasons" id="reasons">
       <div>
-        <h2>Neden Biz</h2>
-        <p>Deneyimli pilotlar, güvenlik odaklı operasyon ve Manavgat Alanya hattına hakim yerel ekip anlatılacak.</p>
+        <h2 data-i18n="reasons.title">Neden Biz</h2>
+        <p data-i18n="reasons.text">Deneyimli pilotlar, güvenlik odaklı operasyon ve Manavgat Alanya hattına hakim yerel ekip anlatılacak.</p>
       </div>
     </section>
 
     <section class="pricing" id="pricing">
       <div>
-        <h2>Paketler</h2>
-        <p>Standart uçuş, medya paketleri ve rezervasyon akışı burada net bir yapıyla sunulacak.</p>
+        <h2 data-i18n="pricing.title">Paketler</h2>
+        <p data-i18n="pricing.text">Standart uçuş, medya paketleri ve rezervasyon akışı burada net bir yapıyla sunulacak.</p>
       </div>
     </section>
 
     <section class="gallery" id="gallery">
       <div>
-        <h2>Galeri</h2>
-        <p>Uçuşlardan kareler, manzara detayları ve görsel hikaye bu alana eklenecek.</p>
+        <h2 data-i18n="gallery.title">Galeri</h2>
+        <p data-i18n="gallery.text">Uçuşlardan kareler, manzara detayları ve görsel hikaye bu alana eklenecek.</p>
+        <ul role="list" id="galleryGrid">
+          <li class="thumbnail">
+            <img src="./images/parachute-1.jpg" data-id="1" loading="lazy" alt="Fly Manavgat paraglide view" class="in-window">
+          </li>
+          <li class="thumbnail">
+            <img src="./images/parachute-2.jpg" data-id="2" loading="lazy" alt="Fly Manavgat paraglide flight" class="in-window">
+          </li>
+          <li class="thumbnail">
+            <img src="./images/manavgat.jpg" data-id="3" loading="lazy" alt="Manavgat river landscape" class="in-window">
+          </li>
+          <li class="thumbnail">
+            <img src="./images/alanya.jpg" data-id="4" loading="lazy" alt="Alanya coastal view" class="in-window">
+          </li>
+          <li class="thumbnail">
+            <img src="./images/alanya-wide.jpg" data-id="5" loading="lazy" alt="Wide Alanya panorama">
+          </li>
+          <li class="thumbnail">
+            <img src="./images/parachute-vertical.jpg" data-id="6" loading="lazy" alt="Paraglide vertical aerial view">
+          </li>
+        </ul>
+
+        <dialog id="galleryModal">
+          <div class="modal-content">
+            <div class="pre-image"></div>
+            <div class="modal-image-container" id="modalImageContainer">
+              <ul class="modal-gallery" id="modalGallery" role="list">
+                <li class="modal-gallery-item">
+                  <img class="modal-gallery-image" src="./images/parachute-1.jpg" data-id="1" loading="eager" alt="Fly Manavgat paraglide view">
+                </li>
+                <li class="modal-gallery-item">
+                  <img class="modal-gallery-image" src="./images/parachute-2.jpg" data-id="2" loading="eager" alt="Fly Manavgat paraglide flight">
+                </li>
+                <li class="modal-gallery-item">
+                  <img class="modal-gallery-image" src="./images/manavgat.jpg" data-id="3" loading="eager" alt="Manavgat river landscape">
+                </li>
+                <li class="modal-gallery-item">
+                  <img class="modal-gallery-image" src="./images/alanya.jpg" data-id="4" loading="eager" alt="Alanya coastal view">
+                </li>
+                <li class="modal-gallery-item">
+                  <img class="modal-gallery-image" src="./images/alanya-wide.jpg" data-id="5" loading="eager" alt="Wide Alanya panorama">
+                </li>
+                <li class="modal-gallery-item">
+                  <img class="modal-gallery-image" src="./images/parachute-vertical.jpg" data-id="6" loading="eager" alt="Paraglide vertical aerial view">
+                </li>
+              </ul>
+            </div>
+            <div class="post-image"></div>
+          </div>
+        </dialog>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <div>
+        <h2 data-i18n="testimonials.title">Yorumlar</h2>
+        <p data-i18n="testimonials.text">Misafirlerimizin uçuş günüyle ilgili anlattıkları kısa ve net deneyim notları burada yer alacak.</p>
+        <ul role="list">
+          <li>
+            <article>
+              <blockquote data-i18n="testimonials.quote_1">“Uçuş öncesi her şey çok sakin ve güven vericiydi. Havalanınca tüm gerginlik yerini keyfe bıraktı.”</blockquote>
+              <p data-i18n="testimonials.author_1">Elif A.</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <blockquote data-i18n="testimonials.quote_2">“Manzara inanılmazdı. Ekip çok ilgiliydi ve rezervasyon süreci beklediğimizden çok daha rahattı.”</blockquote>
+              <p data-i18n="testimonials.author_2">Daniel K.</p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <blockquote data-i18n="testimonials.quote_3">“İlk defa denedim ve düşündüğümden çok daha konforlu geçti. Fotoğraf ve video kısmı da harikaydı.”</blockquote>
+              <p data-i18n="testimonials.author_3">Merve T.</p>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div>
+        <h2 data-i18n="faq.title">Sık Sorulanlar</h2>
+        <p data-i18n="faq.text">İlk kez uçacak misafirlerin en çok sorduğu temel soruları burada kısa cevaplarla toplayacağız.</p>
+        <details open>
+          <summary data-i18n="faq.q1">Uçuş için belirli bir yaş veya kilo sınırı var mı?</summary>
+          <p data-i18n="faq.a1">Genel olarak 5–6 yaşından büyük herkes uçabilir. Genellikle kadınlar için kilo sınırı 90–100 kg, erkekler için ise 110–120 kg civarındadır.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q2">Uçuş ne kadar sürüyor?</summary>
+          <p data-i18n="faq.a2">Hava koşullarına ve seçtiğiniz uçuş stiline göre ortalama havada kalış süresi yaklaşık 25 dakikadır. Daha uzun uçmak isterseniz öğle saatlerini tercih edin ve bunu uçuş öncesinde pilotunuza belirtin.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q3">Hamileler veya kronik rahatsızlığı olanlar uçabilir mi?</summary>
+          <p data-i18n="faq.a3">Hamileler, kalp rahatsızlığı olanlar veya ciddi yüksek tansiyon problemi yaşayanlar için uçuş kesinlikle önerilmez.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q4">Uçuş sırasında ne giymeliyim?</summary>
+          <p data-i18n="faq.a4">Gözlerinizi rüzgardan korumak için güneş gözlüğü, koşu için spor ayakkabı ve mevsime uygun bir rüzgarlık önerilir. Babadağ zirvesi sahile göre 10–15 derece daha soğuk olabilir.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q5">Videoyu kendi telefonumla çekebilir miyim?</summary>
+          <p data-i18n="faq.a5">Güvenlik nedeniyle buna izin verilmez. Telefonun düşmesi hem sizin için kayıp yaratabilir hem de aşağıdaki insanlar için tehlike oluşturabilir. Kayıt için pilotlar profesyonel GoPro ekipmanı kullanır.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q6">Uçurumdan atlıyor muyuz?</summary>
+          <p data-i18n="faq.a6">Hayır, yamaç paraşütünde atlama yoktur. Birkaç adım yokuş aşağı koşarsınız, kanat havayla dolar ve sizi yumuşak şekilde yerden kaldırır.</p>
+        </details>
       </div>
     </section>
 
     <section class="contact" id="contact">
       <div>
         <article>
-          <h2>İletişim</h2>
-          <p>Manavgat ve Alanya uçuşları için bize yazın. Size en uygun saat, paket ve hazırlık detaylarını iletelim.</p>
+          <h2 data-i18n="contact.title">İletişim</h2>
+          <p data-i18n="contact.text">Manavgat ve Alanya uçuşları için bize yazın. Size en uygun saat, paket ve hazırlık detaylarını iletelim.</p>
           <form>
             <label>
-              <span>Ad Soyad</span>
-              <input type="text" name="name" autocomplete="name" placeholder="Adınız ve soyadınız">
+              <span data-i18n="contact.name_label">Ad Soyad</span>
+              <input
+                type="text"
+                name="name"
+                autocomplete="name"
+                data-i18n-placeholder="contact.name_placeholder"
+                placeholder="Adınız ve soyadınız"
+              >
             </label>
             <label>
-              <span>E-posta</span>
-              <input type="email" name="email" autocomplete="email" placeholder="ornek@mail.com">
+              <span data-i18n="contact.email_label">E-posta</span>
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                data-i18n-placeholder="contact.email_placeholder"
+                placeholder="ornek@mail.com"
+              >
             </label>
             <label>
-              <span>Telefon</span>
-              <input type="tel" name="phone" autocomplete="tel" placeholder="+90 5xx xxx xx xx">
+              <span data-i18n="contact.phone_label">Telefon</span>
+              <input
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                data-i18n-placeholder="contact.phone_placeholder"
+                placeholder="+90 5xx xxx xx xx"
+              >
             </label>
             <label>
-              <span>Mesaj</span>
-              <textarea name="message" rows="5" placeholder="Uçuş tarihi, kişi sayısı veya merak ettiğiniz detayları yazın"></textarea>
+              <span data-i18n="contact.message_label">Mesaj</span>
+              <textarea
+                name="message"
+                rows="5"
+                data-i18n-placeholder="contact.message_placeholder"
+                placeholder="Uçuş tarihi, kişi sayısı veya merak ettiğiniz detayları yazın"
+              ></textarea>
             </label>
-            <button type="submit">Mesaj Gönder</button>
+            <div>
+              <button type="submit" data-i18n="contact.submit">Mesaj Gönder</button>
+              <a
+                href="https://wa.me/905385841764"
+                target="_blank"
+                rel="noreferrer"
+                data-i18n="contact.whatsapp"
+              >WhatsApp'tan Ulaşın</a>
+              <a
+                href="https://t.me/+905385841764"
+                target="_blank"
+                rel="noreferrer"
+                data-i18n="contact.telegram"
+              >Telegram'dan Ulaşın</a>
+            </div>
           </form>
         </article>
       </div>
