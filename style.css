@@ -90,6 +90,7 @@ nav.nav {
   background-image: var(--nav-gradient);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  pointer-events: none;
 
   > div {
     width: min(100%, 1566px);
@@ -98,6 +99,7 @@ nav.nav {
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: var(--space-s);
+    pointer-events: auto;
   }
 
   ul {
@@ -241,6 +243,7 @@ section.gallery {
     border: none;
     background: transparent;
     overflow: hidden;
+    cursor: zoom-out;
   }
 
   dialog#galleryModal::backdrop {
@@ -252,6 +255,7 @@ section.gallery {
     height: 100dvh;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
+    cursor: zoom-out;
   }
 
   .pre-image,
@@ -265,6 +269,7 @@ section.gallery {
     display: grid;
     place-items: center;
     scroll-snap-align: center;
+    cursor: zoom-out;
   }
 
   .modal-gallery {
@@ -275,6 +280,7 @@ section.gallery {
     padding: 0;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    cursor: zoom-out;
   }
 
   .modal-gallery::-webkit-scrollbar {
@@ -286,6 +292,7 @@ section.gallery {
     scroll-snap-align: center;
     display: grid;
     place-items: center;
+    cursor: zoom-out;
   }
 
   .modal-gallery-image {
@@ -294,6 +301,7 @@ section.gallery {
     max-height: 82dvh;
     object-fit: contain;
     border-radius: var(--gallery-radius);
+    cursor: zoom-out;
   }
 
   .view-transition-thumbnail {
