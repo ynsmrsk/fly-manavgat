@@ -469,3 +469,101 @@ if (gallery && modal && modalImageContainer && modalContent && modalGallery) {
     }
   })
 }
+
+const scrollFlight = document.querySelector('[data-scroll-flight]')
+const scrollFlightPath = document.getElementById('scrollFlightPath')
+const scrollFlightIcon = document.getElementById('scrollFlightIcon')
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
+  let pathLength = 0
+  let ticking = false
+  let facingDirection = 'left'
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
+
+  const setStaticFlightPosition = () => {
+    const x = window.innerWidth * 0.5
+    const y = Math.max(58, window.innerHeight * 0.2)
+
+    scrollFlightIcon.style.transform =
+      `translate(${x}px, ${y}px) translate(-50%, -50%) scaleX(1) rotate(11deg)`
+  }
+
+  const buildZigzagPath = () => {
+    const width = window.innerWidth
+    const height = window.innerHeight
+    const marginX = Math.max(8, width * 0.08)
+    const startY = Math.max(52, height * 0.12)
+    const endY = height - Math.max(64, height * 0.14)
+    const centerX = width * 0.5
+    const amplitude = Math.max(72, Math.min(235, centerX - marginX))
+    const waveCount = width < 768 ? 1.55 : 2.05
+    const wavePhase = Math.PI
+    const samples = width < 768 ? 24 : 32
+    const travelY = endY - startY
+
+    let d = `M ${centerX} ${startY}`
+
+    for (let index = 1; index <= samples; index += 1) {
+      const t = index / samples
+      const x = centerX + (Math.sin((t * Math.PI * 2 * waveCount) + wavePhase) * amplitude)
+      const y = startY + (travelY * t)
+
+      d += ` L ${x} ${y}`
+    }
+
+    scrollFlightPath.setAttribute('d', d)
+    pathLength = scrollFlightPath.getTotalLength()
+  }
+
+  const updateFlightPosition = () => {
+    ticking = false
+
+    if (reducedMotionQuery.matches || pathLength <= 0) {
+      setStaticFlightPosition()
+      return
+    }
+
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+    const progress = maxScroll > 0 ? clamp(window.scrollY / maxScroll, 0, 1) : 0
+    const pointLength = pathLength * progress
+    const point = scrollFlightPath.getPointAtLength(pointLength)
+    const sampleOffset = 12
+    const nextPoint = scrollFlightPath.getPointAtLength(clamp(pointLength + sampleOffset, 0, pathLength))
+    const prevPoint = scrollFlightPath.getPointAtLength(clamp(pointLength - sampleOffset, 0, pathLength))
+    const deltaX = nextPoint.x - prevPoint.x
+
+    if (Math.abs(deltaX) > 0.2) {
+      facingDirection = deltaX > 0 ? 'right' : 'left'
+    }
+
+    const flipX = facingDirection === 'right' ? -1 : 1
+
+    scrollFlightIcon.style.transform =
+      `translate(${point.x}px, ${point.y}px) translate(-50%, -50%) scaleX(${flipX}) rotate(11deg)`
+  }
+
+  const requestFlightUpdate = () => {
+    if (ticking) return
+
+    ticking = true
+    requestAnimationFrame(updateFlightPosition)
+  }
+
+  const refreshFlightPath = () => {
+    buildZigzagPath()
+    requestFlightUpdate()
+  }
+
+  window.addEventListener('scroll', requestFlightUpdate, { passive: true })
+  window.addEventListener('resize', refreshFlightPath)
+
+  if (typeof reducedMotionQuery.addEventListener === 'function') {
+    reducedMotionQuery.addEventListener('change', requestFlightUpdate)
+  } else {
+    reducedMotionQuery.addListener(requestFlightUpdate)
+  }
+
+  refreshFlightPath()
+}
