@@ -24,6 +24,9 @@ const messages = {
       eyebrow: 'Paraglide Manavgat Alanya',
       text: 'Akdeniz kıyısında hafif, güvenli ve etkileyici tandem uçuş deneyimi'
     },
+    scroll_reveal: {
+      text: 'Akdeniz kıyılarını gökyüzünden görmek, profesyonel tandem pilotlarımızla güvenli bir uçuş deneyimi yaşamak ve bu anı fotoğraf ile videolarla ölümsüzleştirmek için şimdi rezervasyon yapın. Uygun hava saatini birlikte planlayalım, buluşmadan inişe kadar tüm süreci sizin için netleştirelim ve Manavgat ile Alanya manzarasını unutamayacağınız bir maceraya dönüştürelim.'
+    },
     experience: {
       title: 'Uçuş Deneyimi',
       card_1_title: 'Zirveye Teleferik',
@@ -119,6 +122,9 @@ const messages = {
     hero: {
       eyebrow: 'Paragliding Manavgat Alanya',
       text: 'A light, safe and memorable tandem paragliding experience on the Mediterranean coast'
+    },
+    scroll_reveal: {
+      text: 'Book your flight now to experience the Mediterranean coastline from the sky with our professional tandem pilots, enjoy a safe and smooth takeoff, and capture every moment with photo and video options. Let us plan the best weather window with you, simplify every step from meeting point to landing, and turn your Manavgat and Alanya visit into an unforgettable paragliding adventure.'
     },
     experience: {
       title: 'Flight Experience',

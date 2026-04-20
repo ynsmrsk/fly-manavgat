@@ -127,7 +127,7 @@ nav.nav {
   z-index: 20;
   width: 100%;
   padding-top: clamp(1rem, 2.2vw, 1.35rem);
-  padding-bottom: clamp(6rem, 10vw, 12rem);
+  padding-bottom: clamp(1.25rem, 2.6vw, 2.5rem);
   background-image: var(--nav-gradient);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -201,7 +201,8 @@ section[class] {
 }
 
 header.hero {
-  min-height: calc(100vh - 5rem);
+  min-height: clamp(24rem, 62vh, 44rem);
+  padding-block: clamp(2rem, 5vw, 4rem);
   display: grid;
   align-items: center;
 
@@ -244,6 +245,50 @@ section[class] {
 
   p {
     max-width: 38rem;
+  }
+}
+
+section.scroll-reveal {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > .container {
+    width: min(100% - (var(--gutter) * 2), var(--container-max));
+    display: grid;
+    gap: clamp(1rem, 2.2vw, 1.6rem);
+    text-align: center;
+  }
+
+  p {
+    max-width: none;
+    margin: 0;
+    font-family: "PPPangram Sans Rounded", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(2.25rem, 6.2vw, 4.2rem);
+    line-height: 1.14;
+    text-wrap: wrap;
+  }
+
+  p > span {
+    color: hsl(0 0% 100% / 0.2);
+    background-image: linear-gradient(90deg, #fff, #fff);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: reveal linear forwards;
+    animation-timeline: view(y);
+  }
+
+  p > span {
+    animation-range: cover 25vh cover 60vh;
+  }
+}
+
+@keyframes reveal {
+  to {
+    background-size: 100% 100%;
   }
 }
 
