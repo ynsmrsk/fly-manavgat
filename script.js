@@ -15,10 +15,7 @@ const messages = {
       pricing: 'Paketler',
       gallery: 'Galeri',
       testimonials: 'Yorumlar',
-      faq: 'Sık Sorulanlar',
-      contact: 'İletişim',
-      info: 'Bilgi Al',
-      booking: 'Rezervasyon'
+      faq: 'Sık Sorulanlar'
     },
     hero: {
       eyebrow: 'Paraglide Manavgat Alanya',
@@ -51,12 +48,24 @@ const messages = {
     },
     testimonials: {
       title: 'Yorumlar',
-      quote_1: '“Uçuş öncesi her şey çok sakin ve güven vericiydi. Havalanınca tüm gerginlik yerini keyfe bıraktı.”',
-      author_1: 'Elif A.',
-      quote_2: '“Manzara inanılmazdı. Ekip çok ilgiliydi ve rezervasyon süreci beklediğimizden çok daha rahattı.”',
-      author_2: 'Daniel K.',
-      quote_3: '“İlk defa denedim ve düşündüğümden çok daha konforlu geçti. Fotoğraf ve video kısmı da harikaydı.”',
-      author_3: 'Merve T.'
+      quote_1: 'İlk uçuşumdu ve tahmin ettiğimden çok daha rahattı. Pilotum her adımı önceden anlattı, gökyüzünde sadece manzaraya odaklandım.',
+      author_1: 'Elif Arslan',
+      date_1: '12 Mayıs 2025',
+      quote_2: 'Rezervasyondan buluşma saatine kadar her şey netti. Kalkışta kısa bir koşu yaptık, sonra Alanya kıyısını kuşbakışı izlemek inanılmaz bir his verdi.',
+      author_2: 'Daniel Kaya',
+      date_2: '3 Haziran 2025',
+      quote_3: 'İniş çok yumuşaktı ve ekip son ana kadar yanımızdaydı. Fotoğraf-videolar da aynı gün hazırlandı.',
+      author_3: 'Merve Tanrıkulu',
+      date_3: '28 Haziran 2025',
+      quote_4: 'Rüzgar durumu için doğru saati önerdiler ve gerçekten fark etti. Uçuş hem sakin hem de heyecanlıydı.',
+      author_4: 'Burak Narin',
+      date_4: '9 Temmuz 2025',
+      quote_5: 'Arkadaş grubuyla geldik, herkes farklı pilotla uçtu ama deneyim kalitesi çok tutarlıydı. Güvenlik ve iletişim kısmı gerçekten profesyoneldi.',
+      author_5: 'Sofia Levent',
+      date_5: '22 Temmuz 2025',
+      quote_6: 'Manavgat tatilimin en iyi anıydı. Tekrar gelsem yine ilk yapacağım aktivite bu olur.',
+      author_6: 'Emre Yılmaz',
+      date_6: '11 Ağustos 2025'
     },
     team: {
       title: 'Ekibimiz',
@@ -87,17 +96,19 @@ const messages = {
     },
     contact: {
       title: 'İletişim',
-      name_label: 'Ad Soyad',
-      name_placeholder: 'Adınız ve soyadınız',
-      email_label: 'E-posta',
-      email_placeholder: 'ornek@mail.com',
       phone_label: 'Telefon',
-      phone_placeholder: '+90 5xx xxx xx xx',
-      message_label: 'Mesaj',
-      message_placeholder: 'Uçuş tarihi, kişi sayısı veya merak ettiğiniz detayları yazın',
-      submit: 'Mesaj Gönder',
-      whatsapp: "WhatsApp'tan Ulaşın",
-      telegram: "Telegram'dan Ulaşın"
+      phone_value: '+90 538 584 17 64',
+      email_label: 'E-posta',
+      email_value: 'info@flymanavgat.com',
+      address_label: 'Adres',
+      address_value: 'Alanya Yamaç Paraşütü Ulusky, Alanya / Antalya',
+      whatsapp_label: 'WhatsApp',
+      whatsapp_value: '+90 538 584 17 64',
+      telegram_label: 'Telegram',
+      telegram_value: '+90 538 584 17 64',
+      instagram_label: 'Instagram',
+      instagram_value: '@flymanavgat',
+      map_aria: 'Fly Manavgat konum haritası'
     }
   },
   en: {
@@ -114,10 +125,7 @@ const messages = {
       pricing: 'Packages',
       gallery: 'Gallery',
       testimonials: 'Testimonials',
-      faq: 'FAQ',
-      contact: 'Contact',
-      info: 'Get Info',
-      booking: 'Book Now'
+      faq: 'FAQ'
     },
     hero: {
       eyebrow: 'Paragliding Manavgat Alanya',
@@ -150,12 +158,24 @@ const messages = {
     },
     testimonials: {
       title: 'Testimonials',
-      quote_1: '“Everything before the flight felt calm and reassuring. Once we took off, all the tension turned into pure joy.”',
-      author_1: 'Elif A.',
-      quote_2: '“The view was incredible. The team was attentive and the booking process was much easier than we expected.”',
-      author_2: 'Daniel K.',
-      quote_3: '“It was my first time and it felt far more comfortable than I imagined. The photo and video part was also excellent.”',
-      author_3: 'Merve T.'
+      quote_1: 'It was my first flight and it felt much easier than I expected. My pilot explained every step before takeoff, so I could fully enjoy the view.',
+      author_1: 'Elif Arslan',
+      date_1: 'May 12, 2025',
+      quote_2: 'Everything was clear from booking to meeting time. We ran just a few steps, and seeing the Alanya coastline from above felt absolutely unreal.',
+      author_2: 'Daniel Kaya',
+      date_2: 'June 3, 2025',
+      quote_3: 'The landing was very smooth and the team stayed with us until the very end. We even received our photos and videos the same day.',
+      author_3: 'Merve Tanrıkulu',
+      date_3: 'June 28, 2025',
+      quote_4: 'They suggested the right wind window and it made a big difference. The flight was calm, scenic and still exciting.',
+      author_4: 'Burak Narin',
+      date_4: 'July 9, 2025',
+      quote_5: 'We came as a group and each of us flew with a different pilot, yet the quality was consistently high. Safety and communication were clearly professional.',
+      author_5: 'Sofia Levent',
+      date_5: 'July 22, 2025',
+      quote_6: 'Best moment of my Manavgat holiday. I would do this again first thing on my next trip.',
+      author_6: 'Emre Yılmaz',
+      date_6: 'August 11, 2025'
     },
     team: {
       title: 'Our Team',
@@ -186,17 +206,19 @@ const messages = {
     },
     contact: {
       title: 'Contact',
-      name_label: 'Full Name',
-      name_placeholder: 'Your full name',
-      email_label: 'Email',
-      email_placeholder: 'example@mail.com',
       phone_label: 'Phone',
-      phone_placeholder: '+90 5xx xxx xx xx',
-      message_label: 'Message',
-      message_placeholder: 'Write your preferred flight date, number of people or any details you want to ask about',
-      submit: 'Send Message',
-      whatsapp: 'Reach via WhatsApp',
-      telegram: 'Reach via Telegram'
+      phone_value: '+90 538 584 17 64',
+      email_label: 'Email',
+      email_value: 'info@flymanavgat.com',
+      address_label: 'Address',
+      address_value: 'Alanya Yamaç Paraşütü Ulusky, Alanya / Antalya',
+      whatsapp_label: 'WhatsApp',
+      whatsapp_value: '+90 538 584 17 64',
+      telegram_label: 'Telegram',
+      telegram_value: '+90 538 584 17 64',
+      instagram_label: 'Instagram',
+      instagram_value: '@flymanavgat',
+      map_aria: 'Fly Manavgat location map'
     }
   }
 }

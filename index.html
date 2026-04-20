@@ -28,7 +28,7 @@
           <li><a href="#team" data-i18n="nav.team">Ekibimiz</a></li>
           <li><a href="#gallery" data-i18n="nav.gallery">Galeri</a></li>
           <li><a href="#faq" data-i18n="nav.faq">Sık Sorulanlar</a></li>
-          <li><a href="#contact" data-i18n="nav.contact">İletişim</a></li>
+          <li><a href="#contact" data-i18n="contact.title">İletişim</a></li>
         </ul>
         <a href="#top" data-i18n-aria-label="nav.home" aria-label="Fly Manavgat ana sayfa">
           <img src="./images/logo-glass-2-transparent.avif" alt="Fly Manavgat logo">
@@ -36,8 +36,6 @@
         <div>
           <button type="button" data-lang-switch="tr" aria-pressed="true">TR</button>
           <button type="button" data-lang-switch="en" aria-pressed="false">EN</button>
-          <a href="#contact" data-i18n="nav.info">Bilgi Al</a>
-          <a href="#contact" data-i18n="nav.booking">Rezervasyon</a>
         </div>
       </div>
     </nav>
@@ -175,26 +173,94 @@
     <section class="testimonials" id="testimonials">
       <div class="container">
         <h2 data-i18n="testimonials.title">Yorumlar</h2>
-        <ul role="list">
-          <li>
-            <article>
-              <blockquote data-i18n="testimonials.quote_1">“Uçuş öncesi her şey çok sakin ve güven vericiydi. Havalanınca tüm gerginlik yerini keyfe bıraktı.”</blockquote>
-              <p data-i18n="testimonials.author_1">Elif A.</p>
-            </article>
-          </li>
-          <li>
-            <article>
-              <blockquote data-i18n="testimonials.quote_2">“Manzara inanılmazdı. Ekip çok ilgiliydi ve rezervasyon süreci beklediğimizden çok daha rahattı.”</blockquote>
-              <p data-i18n="testimonials.author_2">Daniel K.</p>
-            </article>
-          </li>
-          <li>
-            <article>
-              <blockquote data-i18n="testimonials.quote_3">“İlk defa denedim ve düşündüğümden çok daha konforlu geçti. Fotoğraf ve video kısmı da harikaydı.”</blockquote>
-              <p data-i18n="testimonials.author_3">Merve T.</p>
-            </article>
-          </li>
-        </ul>
+      </div>
+      <div class="carousel-block testimonials-carousel-block">
+        <div class="testimonials-carousel" data-carousel>
+          <div class="slide">
+            <figure class="testimonial-card">
+              <blockquote>
+                <p data-i18n="testimonials.quote_1">İlk uçuşumdu ve tahmin ettiğimden çok daha rahattı. Pilotum her adımı önceden anlattı, gökyüzünde sadece manzaraya odaklandım.</p>
+              </blockquote>
+              <figcaption>
+                <img src="./images/parachute-1.jpg" alt="Profile photo of Elif Arslan" loading="lazy" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <cite data-i18n="testimonials.author_1">Elif Arslan</cite>
+                  <time datetime="2025-05-12" data-i18n="testimonials.date_1">12 Mayıs 2025</time>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="slide">
+            <figure class="testimonial-card">
+              <blockquote>
+                <p data-i18n="testimonials.quote_2">Rezervasyondan buluşma saatine kadar her şey netti. Kalkışta kısa bir koşu yaptık, sonra Alanya kıyısını kuşbakışı izlemek inanılmaz bir his verdi.</p>
+              </blockquote>
+              <figcaption>
+                <img src="./images/parachute-2.jpg" alt="Profile photo of Daniel Kaya" loading="lazy" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <cite data-i18n="testimonials.author_2">Daniel Kaya</cite>
+                  <time datetime="2025-06-03" data-i18n="testimonials.date_2">3 Haziran 2025</time>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="slide">
+            <figure class="testimonial-card">
+              <blockquote>
+                <p data-i18n="testimonials.quote_3">İniş çok yumuşaktı ve ekip son ana kadar yanımızdaydı. Fotoğraf-videolar da aynı gün hazırlandı.</p>
+              </blockquote>
+              <figcaption>
+                <img src="./images/manavgat.jpg" alt="Profile photo of Merve Tanrıkulu" loading="lazy" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <cite data-i18n="testimonials.author_3">Merve Tanrıkulu</cite>
+                  <time datetime="2025-06-28" data-i18n="testimonials.date_3">28 Haziran 2025</time>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="slide">
+            <figure class="testimonial-card">
+              <blockquote>
+                <p data-i18n="testimonials.quote_4">Rüzgar durumu için doğru saati önerdiler ve gerçekten fark etti. Uçuş hem sakin hem de heyecanlıydı.</p>
+              </blockquote>
+              <figcaption>
+                <img src="./images/alanya.jpg" alt="Profile photo of Burak Narin" loading="lazy" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <cite data-i18n="testimonials.author_4">Burak Narin</cite>
+                  <time datetime="2025-07-09" data-i18n="testimonials.date_4">9 Temmuz 2025</time>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="slide">
+            <figure class="testimonial-card">
+              <blockquote>
+                <p data-i18n="testimonials.quote_5">Arkadaş grubuyla geldik, herkes farklı pilotla uçtu ama deneyim kalitesi çok tutarlıydı. Güvenlik ve iletişim kısmı gerçekten profesyoneldi.</p>
+              </blockquote>
+              <figcaption>
+                <img src="./images/alanya-wide.jpg" alt="Profile photo of Sofia Levent" loading="lazy" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <cite data-i18n="testimonials.author_5">Sofia Levent</cite>
+                  <time datetime="2025-07-22" data-i18n="testimonials.date_5">22 Temmuz 2025</time>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="slide">
+            <figure class="testimonial-card">
+              <blockquote>
+                <p data-i18n="testimonials.quote_6">Manavgat tatilimin en iyi anıydı. Tekrar gelsem yine ilk yapacağım aktivite bu olur.</p>
+              </blockquote>
+              <figcaption>
+                <img src="./images/parachute-vertical.jpg" alt="Profile photo of Emre Yılmaz" loading="lazy" class="testimonial-avatar">
+                <div class="testimonial-meta">
+                  <cite data-i18n="testimonials.author_6">Emre Yılmaz</cite>
+                  <time datetime="2025-08-11" data-i18n="testimonials.date_6">11 Ağustos 2025</time>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -294,67 +360,85 @@
 
     <section class="contact" id="contact">
       <div class="container">
-        <article>
-          <h2 data-i18n="contact.title">İletişim</h2>
-          <form>
-            <label>
-              <span data-i18n="contact.name_label">Ad Soyad</span>
-              <input
-                type="text"
-                name="name"
-                autocomplete="name"
-                data-i18n-placeholder="contact.name_placeholder"
-                placeholder="Adınız ve soyadınız"
-              >
-            </label>
-            <label>
-              <span data-i18n="contact.email_label">E-posta</span>
-              <input
-                type="email"
-                name="email"
-                autocomplete="email"
-                data-i18n-placeholder="contact.email_placeholder"
-                placeholder="ornek@mail.com"
-              >
-            </label>
-            <label>
-              <span data-i18n="contact.phone_label">Telefon</span>
-              <input
-                type="tel"
-                name="phone"
-                autocomplete="tel"
-                data-i18n-placeholder="contact.phone_placeholder"
-                placeholder="+90 5xx xxx xx xx"
-              >
-            </label>
-            <label>
-              <span data-i18n="contact.message_label">Mesaj</span>
-              <textarea
-                name="message"
-                rows="5"
-                data-i18n-placeholder="contact.message_placeholder"
-                placeholder="Uçuş tarihi, kişi sayısı veya merak ettiğiniz detayları yazın"
-              ></textarea>
-            </label>
-            <div>
-              <button type="submit" data-i18n="contact.submit">Mesaj Gönder</button>
+        <h2 data-i18n="contact.title">İletişim</h2>
+
+        <address>
+          <ul role="list" class="contact-grid">
+            <li>
+              <a class="contact-item" href="tel:+905385841764">
+                <span class="contact-icon contact-icon-phone" aria-hidden="true">P</span>
+                <span>
+                  <span class="contact-label" data-i18n="contact.phone_label">Telefon</span>
+                  <strong class="contact-value" data-i18n="contact.phone_value">+90 538 584 17 64</strong>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-item" href="mailto:info@flymanavgat.com">
+                <span class="contact-icon contact-icon-email" aria-hidden="true">E</span>
+                <span>
+                  <span class="contact-label" data-i18n="contact.email_label">E-posta</span>
+                  <strong class="contact-value" data-i18n="contact.email_value">info@flymanavgat.com</strong>
+                </span>
+              </a>
+            </li>
+            <li>
               <a
-                href="https://wa.me/905385841764"
+                class="contact-item"
+                href="https://maps.app.goo.gl/U62r8JnXNXGFAV7M9"
                 target="_blank"
                 rel="noreferrer"
-                data-i18n="contact.whatsapp"
-              >WhatsApp'tan Ulaşın</a>
-              <a
-                href="https://t.me/+905385841764"
-                target="_blank"
-                rel="noreferrer"
-                data-i18n="contact.telegram"
-              >Telegram'dan Ulaşın</a>
-            </div>
-          </form>
-        </article>
+              >
+                <span class="contact-icon contact-icon-address" aria-hidden="true">A</span>
+                <span>
+                  <span class="contact-label" data-i18n="contact.address_label">Adres</span>
+                  <strong class="contact-value" data-i18n="contact.address_value">Alanya Yamaç Paraşütü Ulusky, Alanya / Antalya</strong>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-item" href="https://wa.me/905385841764" target="_blank" rel="noreferrer">
+                <span class="contact-icon contact-icon-whatsapp" aria-hidden="true">W</span>
+                <span>
+                  <span class="contact-label" data-i18n="contact.whatsapp_label">WhatsApp</span>
+                  <strong class="contact-value" data-i18n="contact.whatsapp_value">+90 538 584 17 64</strong>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-item" href="https://t.me/+905385841764" target="_blank" rel="noreferrer">
+                <span class="contact-icon contact-icon-telegram" aria-hidden="true">T</span>
+                <span>
+                  <span class="contact-label" data-i18n="contact.telegram_label">Telegram</span>
+                  <strong class="contact-value" data-i18n="contact.telegram_value">+90 538 584 17 64</strong>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-item" href="https://www.instagram.com/flymanavgat/" target="_blank" rel="noreferrer">
+                <span class="contact-icon contact-icon-instagram" aria-hidden="true">I</span>
+                <span>
+                  <span class="contact-label" data-i18n="contact.instagram_label">Instagram</span>
+                  <strong class="contact-value" data-i18n="contact.instagram_value">@flymanavgat</strong>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </address>
+
+        <div class="contact-map">
+          <iframe
+            title="Fly Manavgat map"
+            data-i18n-aria-label="contact.map_aria"
+            aria-label="Fly Manavgat konum haritası"
+            src="https://www.google.com/maps?q=36.5557959,31.9718612&t=h&z=16&hl=tr&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </div>
     </section>
+
   </main>
 </body>
 </html>
