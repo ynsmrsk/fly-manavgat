@@ -10,6 +10,7 @@ const messages = {
       aria: 'Ana navigasyon',
       home: 'Fly Manavgat ana sayfa',
       experience: 'Uçuş Deneyimi',
+      team: 'Ekibimiz',
       reasons: 'Neden Biz',
       pricing: 'Paketler',
       gallery: 'Galeri',
@@ -25,7 +26,6 @@ const messages = {
     },
     experience: {
       title: 'Uçuş Deneyimi',
-      text: 'Uçuş gününün zirveye çıkıştan sahile inişe kadar nasıl aktığını adım adım keşfedin.',
       card_1_title: 'Zirveye Teleferik',
       card_1_text: 'Kalkış noktasına teleferikle ulaşın ve yaklaşık 15 dakikalık yolculuk boyunca Ölüdeniz manzarasının keyfini çıkarın.',
       card_2_title: 'Uçuş Öncesi Brifing',
@@ -38,20 +38,16 @@ const messages = {
       card_5_text: 'Ölüdeniz sahiline yumuşak bir iniş yapın. Ofisimiz sadece birkaç adım ötede; fotoğraf ve videolarınızla bu anı ölümsüzleştirin.'
     },
     reasons: {
-      title: 'Neden Biz',
-      text: 'Deneyimli pilotlar, güvenlik odaklı operasyon ve Manavgat Alanya hattına hakim yerel ekip anlatılacak.'
+      title: 'Neden Biz'
     },
     pricing: {
-      title: 'Paketler',
-      text: 'Standart uçuş, medya paketleri ve rezervasyon akışı burada net bir yapıyla sunulacak.'
+      title: 'Paketler'
     },
     gallery: {
-      title: 'Galeri',
-      text: 'Uçuşlardan kareler, manzara detayları ve görsel hikaye bu alana eklenecek.'
+      title: 'Galeri'
     },
     testimonials: {
       title: 'Yorumlar',
-      text: 'Misafirlerimizin uçuş günüyle ilgili anlattıkları kısa ve net deneyim notları burada yer alacak.',
       quote_1: '“Uçuş öncesi her şey çok sakin ve güven vericiydi. Havalanınca tüm gerginlik yerini keyfe bıraktı.”',
       author_1: 'Elif A.',
       quote_2: '“Manzara inanılmazdı. Ekip çok ilgiliydi ve rezervasyon süreci beklediğimizden çok daha rahattı.”',
@@ -59,9 +55,20 @@ const messages = {
       quote_3: '“İlk defa denedim ve düşündüğümden çok daha konforlu geçti. Fotoğraf ve video kısmı da harikaydı.”',
       author_3: 'Merve T.'
     },
+    team: {
+      title: 'Ekibimiz',
+      member_1_name: 'Arda K.',
+      member_1_role: 'Baş Pilot',
+      member_1_text: 'Kalkış öncesi brifingi yöneten ve uçuş boyunca konforu takip eden ana tandem pilotumuz.',
+      member_2_name: 'Selin A.',
+      member_2_role: 'Misafir Koordinasyonu',
+      member_2_text: 'Rezervasyondan buluşma saatine kadar tüm akışı netleştirir, hazırlık sürecini sizin için sadeleştirir.',
+      member_3_name: 'Mert Y.',
+      member_3_role: 'İniş ve Medya Desteği',
+      member_3_text: 'İniş alanındaki koordinasyonu yürütür, fotoğraf ve video teslim sürecini hızlıca tamamlar.'
+    },
     faq: {
       title: 'Sık Sorulanlar',
-      text: 'İlk kez uçacak misafirlerin en çok sorduğu temel soruları burada kısa cevaplarla toplayacağız.',
       q1: 'Uçuş için belirli bir yaş veya kilo sınırı var mı?',
       a1: 'Genel olarak 5–6 yaşından büyük herkes uçabilir. Genellikle kadınlar için kilo sınırı 90–100 kg, erkekler için ise 110–120 kg civarındadır.',
       q2: 'Uçuş ne kadar sürüyor?',
@@ -77,7 +84,6 @@ const messages = {
     },
     contact: {
       title: 'İletişim',
-      text: 'Manavgat ve Alanya uçuşları için bize yazın. Size en uygun saat, paket ve hazırlık detaylarını iletelim.',
       name_label: 'Ad Soyad',
       name_placeholder: 'Adınız ve soyadınız',
       email_label: 'E-posta',
@@ -100,6 +106,7 @@ const messages = {
       aria: 'Main navigation',
       home: 'Fly Manavgat home page',
       experience: 'Flight Experience',
+      team: 'Our Team',
       reasons: 'Why Us',
       pricing: 'Packages',
       gallery: 'Gallery',
@@ -115,7 +122,6 @@ const messages = {
     },
     experience: {
       title: 'Flight Experience',
-      text: 'Discover step by step how the day flows from the summit ride to the beach landing.',
       card_1_title: 'Cable Car to the Summit',
       card_1_text: 'Reach the launch site by cable car and enjoy the panoramic views of Ölüdeniz throughout the 15-minute ride.',
       card_2_title: 'Pre-Flight Briefing',
@@ -128,20 +134,16 @@ const messages = {
       card_5_text: 'Touch down gently on Ölüdeniz beach. Our office is just steps away — immortalize the moment with your photos and video.'
     },
     reasons: {
-      title: 'Why Us',
-      text: 'Experienced pilots, a safety-first operation and a local team that knows the Manavgat Alanya line will be presented here.'
+      title: 'Why Us'
     },
     pricing: {
-      title: 'Packages',
-      text: 'Standard flight, media packages and the booking flow will be presented here with a clear structure.'
+      title: 'Packages'
     },
     gallery: {
-      title: 'Gallery',
-      text: 'Moments from the flights, landscape details and the visual story will be added here.'
+      title: 'Gallery'
     },
     testimonials: {
       title: 'Testimonials',
-      text: 'Short and clear notes from our guests about their flight day will appear here.',
       quote_1: '“Everything before the flight felt calm and reassuring. Once we took off, all the tension turned into pure joy.”',
       author_1: 'Elif A.',
       quote_2: '“The view was incredible. The team was attentive and the booking process was much easier than we expected.”',
@@ -149,9 +151,20 @@ const messages = {
       quote_3: '“It was my first time and it felt far more comfortable than I imagined. The photo and video part was also excellent.”',
       author_3: 'Merve T.'
     },
+    team: {
+      title: 'Our Team',
+      member_1_name: 'Arda K.',
+      member_1_role: 'Lead Pilot',
+      member_1_text: 'Our main tandem pilot leads the pre-flight briefing and keeps the entire experience comfortable in the air.',
+      member_2_name: 'Selin A.',
+      member_2_role: 'Guest Coordination',
+      member_2_text: 'She clarifies everything from booking to meeting time and keeps the preparation process simple for you.',
+      member_3_name: 'Mert Y.',
+      member_3_role: 'Landing and Media Support',
+      member_3_text: 'He manages the landing area flow and completes the photo and video handoff quickly after the flight.'
+    },
     faq: {
       title: 'FAQ',
-      text: 'We will gather the most common questions from first-time flyers here with short answers.',
       q1: 'Is there a specific age or weight limit for flying?',
       a1: 'Generally, anyone older than 5–6 years can fly. Typically, the weight limit is around 90–100 kg for women and 110–120 kg for men.',
       q2: 'How long does the flight last?',
@@ -167,7 +180,6 @@ const messages = {
     },
     contact: {
       title: 'Contact',
-      text: 'Write to us for flights in Manavgat and Alanya. We will share the best time, package and preparation details for you.',
       name_label: 'Full Name',
       name_placeholder: 'Your full name',
       email_label: 'Email',
