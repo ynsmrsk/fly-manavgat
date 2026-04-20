@@ -249,6 +249,8 @@ section[class] {
 }
 
 section.scroll-reveal {
+  --reveal-feather: 7%;
+  --reveal-overshoot: 7%;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -272,7 +274,13 @@ section.scroll-reveal {
 
   p > span {
     color: hsl(0 0% 100% / 0.2);
-    background-image: linear-gradient(90deg, #fff, #fff);
+    background-image:
+      linear-gradient(
+        90deg,
+        #fff 0%,
+        #fff calc(100% - var(--reveal-feather)),
+        hsl(0 0% 100% / 0.2) 100%
+      );
     background-repeat: no-repeat;
     background-size: 0% 100%;
     -webkit-background-clip: text;
@@ -288,7 +296,7 @@ section.scroll-reveal {
 
 @keyframes reveal {
   to {
-    background-size: 100% 100%;
+    background-size: calc(100% + var(--reveal-overshoot)) 100%;
   }
 }
 

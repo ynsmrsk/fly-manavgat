@@ -25,7 +25,7 @@ const messages = {
       text: 'Akdeniz kıyısında hafif, güvenli ve etkileyici tandem uçuş deneyimi'
     },
     scroll_reveal: {
-      text: 'Akdeniz kıyılarını gökyüzünden görmek, profesyonel tandem pilotlarımızla güvenli bir uçuş deneyimi yaşamak ve bu anı fotoğraf ile videolarla ölümsüzleştirmek için şimdi rezervasyon yapın. Uygun hava saatini birlikte planlayalım, buluşmadan inişe kadar tüm süreci sizin için netleştirelim ve Manavgat ile Alanya manzarasını unutamayacağınız bir maceraya dönüştürelim.'
+      text: 'Akdeniz kıyılarını gökyüzünden keşfetmek için şimdi rezervasyon yapın. Profesyonel tandem pilotlarımızla güvenli bir uçuş deneyimi yaşayın ve anınızı fotoğraf-video ile ölümsüzleştirin.'
     },
     experience: {
       title: 'Uçuş Deneyimi',
@@ -124,7 +124,7 @@ const messages = {
       text: 'A light, safe and memorable tandem paragliding experience on the Mediterranean coast'
     },
     scroll_reveal: {
-      text: 'Book your flight now to experience the Mediterranean coastline from the sky with our professional tandem pilots, enjoy a safe and smooth takeoff, and capture every moment with photo and video options. Let us plan the best weather window with you, simplify every step from meeting point to landing, and turn your Manavgat and Alanya visit into an unforgettable paragliding adventure.'
+      text: 'Book now to explore the Mediterranean coastline from the sky. Fly safely with our professional tandem pilots and preserve every moment with photo and video options.'
     },
     experience: {
       title: 'Flight Experience',
