@@ -282,7 +282,7 @@ section.scroll-reveal {
   }
 
   p > span {
-    animation-range: cover 25vh cover 60vh;
+    animation-range: cover 45vh cover 80vh;
   }
 }
 
