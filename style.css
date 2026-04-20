@@ -915,12 +915,34 @@ section.contact {
     color: #ffffff;
   }
 
+  .contact-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .contact-icon-svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    display: block;
+  }
+
+  .contact-icon-phone,
+  .contact-icon-email,
+  .contact-icon-address {
+    border-radius: 999px;
+  }
+
   .contact-icon-phone { background: #df5b5b; }
   .contact-icon-email { background: #5d7ee2; }
   .contact-icon-address { background: #ec8354; }
-  .contact-icon-whatsapp { background: #5abf72; }
-  .contact-icon-telegram { background: #5193d9; }
-  .contact-icon-instagram { background: #c96ad9; }
+  .contact-icon-whatsapp,
+  .contact-icon-telegram,
+  .contact-icon-instagram {
+    background: transparent;
+    border-radius: 0;
+  }
   .contact-label {
     display: block;
     margin-bottom: 0.25rem;
