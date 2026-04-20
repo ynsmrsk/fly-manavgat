@@ -537,17 +537,22 @@ if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
     const startY = flightStartY
     const endY = height - Math.max(64, height * 0.14)
     const centerX = startX
-    const amplitude = Math.max(72, Math.min(235, centerX - marginX))
-    const waveCount = width < 768 ? 1.55 : 2.05
+    const horizontalRoom = Math.min(centerX - marginX, width - centerX - marginX)
+    const amplitude = Math.max(120, Math.min(360, horizontalRoom * 0.95))
+    const waveCount = width < 768 ? 1.8 : 2.35
     const wavePhase = Math.PI
-    const samples = width < 768 ? 24 : 32
+    const samples = width < 768 ? 36 : 52
     const travelY = endY - startY
 
     let d = `M ${startX} ${startY}`
 
     for (let index = 1; index <= samples; index += 1) {
       const t = index / samples
-      const x = centerX + (Math.sin((t * Math.PI * 2 * waveCount) + wavePhase) * amplitude)
+      const primary = Math.sin((t * Math.PI * 2 * waveCount) + wavePhase)
+      const secondary = Math.sin((t * Math.PI * 2 * (waveCount * 1.73)) + (wavePhase * 0.6))
+      const tertiary = Math.sin((t * Math.PI * 2 * (waveCount * 0.67)) + (wavePhase * 1.4))
+      const blendedWave = primary + (secondary * 0.34) + (tertiary * 0.2)
+      const x = centerX + (blendedWave * amplitude)
       const y = startY + (travelY * t)
 
       d += ` L ${x} ${y}`
