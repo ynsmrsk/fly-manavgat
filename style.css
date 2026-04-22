@@ -135,10 +135,7 @@ main.page {
 }
 
 .scroll-flight-guide path {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.2);
-  stroke-width: 2;
-  stroke-dasharray: 0.6rem 0.85rem;
+  display: none;
 }
 
 .scroll-flight-icon {
@@ -209,6 +206,7 @@ nav.nav {
     align-self: center;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--space-2xs);
   }
 
@@ -236,6 +234,7 @@ nav.nav {
     font-size: 0.75rem;
     user-select: none;
     pointer-events: none;
+    margin-inline: -0.15rem;
   }
 
   .nav-toggle {
@@ -1014,7 +1013,7 @@ section.contact {
 
   .contact-map {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 2;
     overflow: clip;
     border-radius: 1.45rem;
     border: 2px solid rgba(255, 255, 255, 0.36);
@@ -1050,6 +1049,18 @@ section.contact {
     > div > div {
       grid-area: lang;
       justify-self: start;
+      gap: 0;
+    }
+
+    > div > div :is(button) {
+      position: relative;
+      padding: 0;
+    }
+
+    > div > div button::before {
+      content: '';
+      position: absolute;
+      inset: -0.625rem;
     }
 
     .nav-toggle {
@@ -1058,15 +1069,21 @@ section.contact {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 2.75rem;
-      height: 2.75rem;
-      border: 1px solid var(--line-soft);
-      border-radius: 999px;
-      background: var(--surface-soft);
-      backdrop-filter: blur(16px);
+      width: auto;
+      height: auto;
+      padding: 0;
+      position: relative;
+      border: none;
+      border-radius: 0;
+      background: transparent;
       color: #ffffff;
       cursor: pointer;
-      flex-shrink: 0;
+    }
+
+    .nav-toggle::after {
+      content: '';
+      position: absolute;
+      inset: -0.625rem;
     }
 
     ul {
