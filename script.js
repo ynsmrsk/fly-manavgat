@@ -9,6 +9,7 @@ const messages = {
     nav: {
       aria: 'Ana navigasyon',
       home: 'Fly Manavgat ana sayfa',
+      toggle: 'Menü',
       experience: 'Uçuş Deneyimi',
       team: 'Ekibimiz',
       reasons: 'Neden Biz',
@@ -119,6 +120,7 @@ const messages = {
     nav: {
       aria: 'Main navigation',
       home: 'Fly Manavgat home page',
+      toggle: 'Menu',
       experience: 'Flight Experience',
       team: 'Our Team',
       reasons: 'Why Us',
@@ -317,6 +319,25 @@ document.querySelectorAll('[data-lang-switch]').forEach(button => {
     applyLocale(button.dataset.langSwitch)
   })
 })
+
+const navToggle = document.querySelector('.nav-toggle')
+const navMenu = document.getElementById('nav-menu')
+const navEl = document.querySelector('nav.nav')
+
+if (navToggle && navMenu && navEl) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navToggle.getAttribute('aria-expanded') === 'true'
+    navToggle.setAttribute('aria-expanded', String(!isOpen))
+    navEl.toggleAttribute('data-open', !isOpen)
+  })
+
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.setAttribute('aria-expanded', 'false')
+      navEl.removeAttribute('data-open')
+    })
+  })
+}
 
 applyLocale(getInitialLocale())
 initializeFaq()
