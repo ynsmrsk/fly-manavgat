@@ -275,6 +275,9 @@ header.hero {
     max-width: 10ch;
     font-size: clamp(3.5rem, 10vw, 7rem);
     line-height: 0.92;
+    text-shadow:
+      0 0.15ch 20px rgba(0, 15, 50, 0.65),
+      0 -2px 0 rgba(255, 255, 255, 0.22);
   }
 
   p:last-of-type {
