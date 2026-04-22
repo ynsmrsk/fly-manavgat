@@ -254,8 +254,9 @@ section[class] {
 header.hero {
   position: relative;
   isolation: isolate;
-  min-height: clamp(24rem, 62vh, 44rem);
-  padding-block: clamp(2rem, 5vw, 4rem);
+  min-height: 100dvh;
+  margin-top: calc(-1 * var(--nav-height, 0px));
+  padding-block: var(--nav-height, 0px) clamp(2rem, 5vw, 4rem);
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -1143,8 +1144,7 @@ section.contact {
   }
 
   header.hero {
-    min-height: auto;
-    padding-top: var(--space-xl);
+    padding-top: calc(var(--nav-height, 0px) + var(--space-xl));
   }
 
   section.gallery {

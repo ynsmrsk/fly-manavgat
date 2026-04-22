@@ -261,6 +261,25 @@ const initializeCarousels = () => {
   })
 }
 
+const initializeHeroNavOffset = () => {
+  const nav = document.querySelector('nav.nav')
+  const hero = document.querySelector('header.hero')
+  if (!nav || !hero) return
+
+  const update = () => {
+    hero.style.setProperty('--nav-height', `${nav.offsetHeight}px`)
+  }
+
+  update()
+
+  if (typeof ResizeObserver !== 'undefined') {
+    const observer = new ResizeObserver(update)
+    observer.observe(nav)
+  } else {
+    window.addEventListener('resize', update)
+  }
+}
+
 const initializeHeroClouds = () => {
   const canvas = document.querySelector('[data-hero-clouds]')
   if (!canvas) return
@@ -567,6 +586,7 @@ if (navToggle && navMenu && navEl) {
 applyLocale(getInitialLocale())
 initializeFaq()
 initializeCarousels()
+initializeHeroNavOffset()
 initializeHeroClouds()
 
 window.addEventListener('resize', measureFaqHeights)
