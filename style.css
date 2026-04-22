@@ -353,7 +353,7 @@ section.experience {
 .carousel {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: clamp(18rem, 22vw, 21rem);
+  grid-auto-columns: clamp(14rem, 22vw, 21rem);
   gap: var(--gutter);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -524,7 +524,7 @@ section.testimonials {
 .testimonials-carousel {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: clamp(22rem, 44vw, 36rem);
+  grid-auto-columns: clamp(17rem, 44vw, 36rem);
   gap: var(--gutter);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -983,7 +983,7 @@ section.contact {
   .contact-label {
     display: block;
     margin-bottom: 0.25rem;
-    font-size: 0.74rem;
+    font-size: 0.8rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.7);
@@ -999,7 +999,7 @@ section.contact {
 
   .contact-map {
     width: 100%;
-    aspect-ratio: 16 / 6;
+    aspect-ratio: 4 / 3;
     overflow: clip;
     border-radius: 1.45rem;
     border: 2px solid rgba(255, 255, 255, 0.36);
@@ -1031,6 +1031,10 @@ section.contact {
     > div > div {
       justify-self: center;
     }
+
+    > div > div :is(a, button) {
+      min-height: 2.75rem;
+    }
   }
 
   header.hero {
@@ -1040,11 +1044,31 @@ section.contact {
 
   section.gallery {
     ul#galleryGrid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .modal-gallery-image {
       max-width: min(100vw - 1.5rem, 88rem);
+    }
+  }
+
+  section.team {
+    ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  section.contact {
+    .contact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+@media (max-width: 36rem) {
+  section.gallery {
+    ul#galleryGrid {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -1055,11 +1079,14 @@ section.contact {
   }
 
   section.contact {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+
     .contact-map {
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 1 / 1;
     }
   }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
