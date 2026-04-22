@@ -19,7 +19,7 @@ const messages = {
       faq: 'Sık Sorulanlar'
     },
     hero: {
-      eyebrow: 'Paraglide Manavgat Alanya',
+      eyebrow: 'Manavgat\'ta Tandem Paragliding',
       text: 'Akdeniz kıyısında hafif, güvenli ve etkileyici tandem uçuş deneyimi'
     },
     scroll_reveal: {
@@ -130,7 +130,7 @@ const messages = {
       faq: 'FAQ'
     },
     hero: {
-      eyebrow: 'Paragliding Manavgat Alanya',
+      eyebrow: 'Tandem Paragliding in Manavgat',
       text: 'A light, safe and memorable tandem paragliding experience on the Mediterranean coast'
     },
     scroll_reveal: {
