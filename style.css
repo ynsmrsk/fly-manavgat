@@ -254,7 +254,7 @@ section[class] {
 header.hero {
   position: relative;
   isolation: isolate;
-  min-height: 100svh;
+  min-height: 100vh;
   margin-top: calc(-1 * var(--nav-height, 0px));
   padding-block: var(--nav-height, 0px) clamp(2rem, 5vw, 4rem);
   display: grid;
