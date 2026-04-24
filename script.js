@@ -316,8 +316,8 @@ const initializeHeroClouds = () => {
     const float cloudcover = 0.2;
     const float cloudalpha = 8.0;
     const float skytint = 0.5;
-    const vec3 skycolour1 = vec3(0.2, 0.4, 0.6);
-    const vec3 skycolour2 = vec3(0.4, 0.7, 1.0);
+    const vec3 skycolour1 = vec3(0.1, 0.45, 0.8);
+    const vec3 skycolour2 = vec3(0.45, 0.74, 1.0);
 
     const mat2 m = mat2(1.6, 1.2, -1.2, 1.6);
 
