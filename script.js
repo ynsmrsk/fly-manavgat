@@ -736,12 +736,14 @@ const navLogoImage = document.querySelector('nav.nav > div > a > img')
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
 
 if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
-  let pathLength = 0
   let ticking = false
   let facingDirection = 'left'
   let flightStartX = window.innerWidth * 0.5
   let flightStartY = Math.max(52, window.innerHeight * 0.12)
   let flightStartScale = 0.9
+  let sampleXs = new Float32Array(0)
+  let sampleYs = new Float32Array(0)
+  let maxScroll = 0
   const flightScaleBoost = 1.11
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
@@ -772,17 +774,14 @@ if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
     flightStartY = logoRect.top + (logoRect.height * 0.38)
     flightStartScale = clamp(logoParachuteTargetWidth / iconBaseWidth, 0.5, 1.1)
   }
-  const getScrollProgress = () => {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-
-    if (maxScroll <= 0) return 0
-
-    return clamp(window.scrollY / maxScroll, 0, 1)
+  const refreshMaxScroll = () => {
+    maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
   }
   const getFlightScale = progress => clamp(flightStartScale + (progress * 0.42), flightStartScale, 1.35)
 
   const setStaticFlightPosition = () => {
-    const scale = getFlightScale(getScrollProgress())
+    const progress = maxScroll > 0 ? clamp(window.scrollY / maxScroll, 0, 1) : 0
+    const scale = getFlightScale(progress)
 
     scrollFlightIcon.style.transform =
       `translate(${flightStartX}px, ${flightStartY}px) translate(-50%, -50%) scale(${scale * flightScaleBoost}) scaleX(1) rotate(22deg)`
@@ -800,52 +799,60 @@ if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
     const amplitude = Math.max(120, Math.min(360, horizontalRoom * 0.95))
     const waveCount = width < 768 ? 1.8 : 2.35
     const wavePhase = Math.PI
-    const samples = width < 768 ? 36 : 52
+    const segments = width < 768 ? 64 : 96
     const travelY = endY - startY
+    const TWO_PI = Math.PI * 2
 
-    let d = `M ${startX} ${startY}`
+    sampleXs = new Float32Array(segments + 1)
+    sampleYs = new Float32Array(segments + 1)
+    sampleXs[0] = startX
+    sampleYs[0] = startY
 
-    for (let index = 1; index <= samples; index += 1) {
-      const t = index / samples
-      const primary = Math.sin((t * Math.PI * 2 * waveCount) + wavePhase)
-      const secondary = Math.sin((t * Math.PI * 2 * (waveCount * 1.73)) + (wavePhase * 0.6))
-      const tertiary = Math.sin((t * Math.PI * 2 * (waveCount * 0.67)) + (wavePhase * 1.4))
+    for (let index = 1; index <= segments; index += 1) {
+      const t = index / segments
+      const primary = Math.sin((t * TWO_PI * waveCount) + wavePhase)
+      const secondary = Math.sin((t * TWO_PI * (waveCount * 1.73)) + (wavePhase * 0.6))
+      const tertiary = Math.sin((t * TWO_PI * (waveCount * 0.67)) + (wavePhase * 1.4))
       const blendedWave = primary + (secondary * 0.34) + (tertiary * 0.2)
-      const x = centerX + (blendedWave * amplitude)
-      const y = startY + (travelY * t)
-
-      d += ` L ${x} ${y}`
+      sampleXs[index] = centerX + (blendedWave * amplitude)
+      sampleYs[index] = startY + (travelY * t)
     }
-
-    scrollFlightPath.setAttribute('d', d)
-    pathLength = scrollFlightPath.getTotalLength()
   }
 
   const updateFlightPosition = () => {
     ticking = false
 
-    if (reducedMotionQuery.matches || pathLength <= 0) {
+    if (reducedMotionQuery.matches || sampleXs.length === 0) {
       setStaticFlightPosition()
       return
     }
 
-    const progress = getScrollProgress()
-    const pointLength = pathLength * progress
-    const point = scrollFlightPath.getPointAtLength(pointLength)
-    const sampleOffset = 12
-    const nextPoint = scrollFlightPath.getPointAtLength(clamp(pointLength + sampleOffset, 0, pathLength))
-    const prevPoint = scrollFlightPath.getPointAtLength(clamp(pointLength - sampleOffset, 0, pathLength))
-    const deltaX = nextPoint.x - prevPoint.x
+    const progress = maxScroll > 0 ? clamp(window.scrollY / maxScroll, 0, 1) : 0
+    const lastIndex = sampleXs.length - 1
+    const fIndex = progress * lastIndex
+    const i0 = fIndex | 0
+    const i1 = i0 < lastIndex ? i0 + 1 : lastIndex
+    const lerp = fIndex - i0
+    const x0 = sampleXs[i0]
+    const y0 = sampleYs[i0]
+    const x = x0 + (sampleXs[i1] - x0) * lerp
+    const y = y0 + (sampleYs[i1] - y0) * lerp
 
-    if (Math.abs(deltaX) > 0.2) {
-      facingDirection = deltaX > 0 ? 'right' : 'left'
+    const iPrev = i0 > 0 ? i0 - 1 : 0
+    const iNext = i1 < lastIndex ? i1 + 1 : lastIndex
+    const deltaX = sampleXs[iNext] - sampleXs[iPrev]
+
+    if (deltaX > 0.2) {
+      facingDirection = 'right'
+    } else if (deltaX < -0.2) {
+      facingDirection = 'left'
     }
 
     const flipX = facingDirection === 'right' ? -1 : 1
     const scale = getFlightScale(progress)
 
     scrollFlightIcon.style.transform =
-      `translate(${point.x}px, ${point.y}px) translate(-50%, -50%) scale(${scale * flightScaleBoost}) scaleX(${flipX}) rotate(22deg)`
+      `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale * flightScaleBoost}) scaleX(${flipX}) rotate(22deg)`
   }
 
   const requestFlightUpdate = () => {
@@ -857,6 +864,7 @@ if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
 
   const refreshFlightPath = () => {
     refreshFlightStart()
+    refreshMaxScroll()
     buildZigzagPath()
     requestFlightUpdate()
   }
@@ -864,6 +872,10 @@ if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
   window.addEventListener('scroll', requestFlightUpdate, { passive: true })
   window.addEventListener('resize', refreshFlightPath)
   window.addEventListener('load', refreshFlightPath)
+
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(refreshMaxScroll).observe(document.documentElement)
+  }
 
   if (typeof reducedMotionQuery.addEventListener === 'function') {
     reducedMotionQuery.addEventListener('change', requestFlightUpdate)
