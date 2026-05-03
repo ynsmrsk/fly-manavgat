@@ -379,6 +379,7 @@ section.experience {
 
 .carousel-block {
   --carousel-inline-padding: max(var(--gutter), calc((100vw - var(--container-max)) / 2));
+  min-width: 0;
 }
 
 .carousel {
@@ -389,20 +390,76 @@ section.experience {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-snap-stop: always;
+  scroll-behavior: smooth;
   padding-block: var(--space-2xl);
   padding-inline: var(--carousel-inline-padding);
   scroll-padding-inline: var(--carousel-inline-padding);
+  anchor-name: --carousel-experience;
+  scroll-marker-group: after;
   scrollbar-width: none;
   overscroll-behavior-inline: contain;
-}
 
-.carousel::-webkit-scrollbar {
-  display: none;
-}
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-.carousel .slide {
-  width: 100%;
-  scroll-snap-align: start;
+  &::scroll-marker-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2xs);
+    height: var(--space-l);
+  }
+
+  & > .slide {
+    width: 100%;
+    scroll-snap-align: start;
+
+    &::scroll-marker {
+      content: "";
+      background-color: rgba(255, 255, 255, 0.3);
+      width: var(--space-s);
+      height: var(--space-3xs);
+      border-radius: var(--radius);
+      transition: background-color 0.6s var(--ease-out-expo);
+    }
+
+    &::scroll-marker:target-current {
+      background-color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  &::scroll-button(*) {
+    position: absolute;
+    z-index: 1;
+    position-anchor: --carousel-experience;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-title);
+    font-size: var(--step-0);
+    border-radius: 100%;
+    width: var(--space-l);
+    height: var(--space-l);
+    transition:
+      background-color 0.6s var(--ease-out-expo),
+      color 0.6s var(--ease-out-expo);
+  }
+
+  &::scroll-button(*:disabled) {
+    opacity: 0.4;
+  }
+
+  &::scroll-button(left) {
+    content: "❮";
+    right: calc(anchor(right) + var(--space-l) + var(--space-l) + 1rem);
+    bottom: calc(anchor(bottom) - var(--space-l));
+  }
+
+  &::scroll-button(right) {
+    content: "❯";
+    right: calc(anchor(right) + var(--space-l));
+    bottom: calc(anchor(bottom) - var(--space-l));
+  }
 }
 
 .carousel article {
@@ -550,6 +607,7 @@ section.testimonials {
 
 .testimonials-carousel-block {
   --testimonials-inline-padding: max(var(--gutter), calc((100vw - var(--container-max)) / 2));
+  min-width: 0;
 }
 
 .testimonials-carousel {
@@ -560,20 +618,76 @@ section.testimonials {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-snap-stop: always;
+  scroll-behavior: smooth;
   padding-block: var(--space-xl);
   padding-inline: var(--testimonials-inline-padding);
   scroll-padding-inline: var(--testimonials-inline-padding);
+  anchor-name: --carousel-testimonials;
+  scroll-marker-group: after;
   scrollbar-width: none;
   overscroll-behavior-inline: contain;
-}
 
-.testimonials-carousel::-webkit-scrollbar {
-  display: none;
-}
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-.testimonials-carousel .slide {
-  width: 100%;
-  scroll-snap-align: start;
+  &::scroll-marker-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2xs);
+    height: var(--space-l);
+  }
+
+  & > .slide {
+    width: 100%;
+    scroll-snap-align: start;
+
+    &::scroll-marker {
+      content: "";
+      background-color: rgba(255, 255, 255, 0.3);
+      width: var(--space-s);
+      height: var(--space-3xs);
+      border-radius: var(--radius);
+      transition: background-color 0.6s var(--ease-out-expo);
+    }
+
+    &::scroll-marker:target-current {
+      background-color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  &::scroll-button(*) {
+    position: absolute;
+    z-index: 1;
+    position-anchor: --carousel-testimonials;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-title);
+    font-size: var(--step-0);
+    border-radius: 100%;
+    width: var(--space-l);
+    height: var(--space-l);
+    transition:
+      background-color 0.6s var(--ease-out-expo),
+      color 0.6s var(--ease-out-expo);
+  }
+
+  &::scroll-button(*:disabled) {
+    opacity: 0.4;
+  }
+
+  &::scroll-button(left) {
+    content: "❮";
+    right: calc(anchor(right) + var(--space-l) + var(--space-l) + 1rem);
+    bottom: calc(anchor(bottom) - var(--space-l));
+  }
+
+  &::scroll-button(right) {
+    content: "❯";
+    right: calc(anchor(right) + var(--space-l));
+    bottom: calc(anchor(bottom) - var(--space-l));
+  }
 }
 
 .testimonial-card {

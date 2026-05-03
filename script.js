@@ -1,4 +1,3 @@
-import { Blossom } from 'https://esm.sh/@blossom-carousel/core@1.1.0'
 import * as THREE from 'https://esm.sh/three@0.160.0'
 
 const messages = {
@@ -253,12 +252,6 @@ const measureFaqHeights = () => {
 
 const initializeFaq = () => {
   measureFaqHeights()
-}
-
-const initializeCarousels = () => {
-  document.querySelectorAll('[data-carousel]').forEach(element => {
-    Blossom(element).init()
-  })
 }
 
 const initializeHeroNavOffset = () => {
@@ -585,7 +578,6 @@ if (navToggle && navMenu && navEl) {
 
 applyLocale(getInitialLocale())
 initializeFaq()
-initializeCarousels()
 initializeHeroNavOffset()
 initializeHeroClouds()
 
