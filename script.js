@@ -49,6 +49,7 @@ const messages = {
     },
     testimonials: {
       title: 'Yorumlar',
+      flip_aria: 'Yorumu çevir',
       quote_1: 'İlk uçuşumdu ve tahmin ettiğimden çok daha rahattı. Pilotum her adımı önceden anlattı, gökyüzünde sadece manzaraya odaklandım.',
       author_1: 'Elif Arslan',
       date_1: '12 Mayıs 2025',
@@ -160,6 +161,7 @@ const messages = {
     },
     testimonials: {
       title: 'Testimonials',
+      flip_aria: 'Flip testimonial',
       quote_1: 'It was my first flight and it felt much easier than I expected. My pilot explained every step before takeoff, so I could fully enjoy the view.',
       author_1: 'Elif Arslan',
       date_1: 'May 12, 2025',
