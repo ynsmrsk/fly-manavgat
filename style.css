@@ -1282,6 +1282,22 @@ section.contact {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
+
+  .carousel-block {
+    --carousel-inline-padding: 7%;
+  }
+
+  .carousel {
+    grid-auto-columns: 48%;
+  }
+
+  .testimonials-carousel-block {
+    --testimonials-inline-padding: 7%;
+  }
+
+  .testimonials-carousel {
+    grid-auto-columns: 68%;
+  }
 }
 
 @media (max-width: 36rem) {
@@ -1305,6 +1321,22 @@ section.contact {
     .contact-map {
       aspect-ratio: 1 / 1;
     }
+  }
+
+  .carousel-block {
+    --carousel-inline-padding: 8%;
+  }
+
+  .carousel {
+    grid-auto-columns: 82%;
+  }
+
+  .testimonials-carousel-block {
+    --testimonials-inline-padding: 8%;
+  }
+
+  .testimonials-carousel {
+    grid-auto-columns: 86%;
   }
 }
 
