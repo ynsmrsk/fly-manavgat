@@ -732,23 +732,38 @@ if (gallery && modal && modalImageContainer && modalContent && modalGallery) {
 }
 
 const scrollFlight = document.querySelector('[data-scroll-flight]')
-const scrollFlightPath = document.getElementById('scrollFlightPath')
 const scrollFlightIcon = document.getElementById('scrollFlightIcon')
 const navLogoImage = document.querySelector('nav.nav > div > a > img')
 const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
 
-if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
+if (scrollFlight && scrollFlightIcon) {
+  const TAU = Math.PI * 2
+
   let ticking = false
+  let refreshQueued = false
   let facingDirection = 'left'
   let flightStartX = window.innerWidth * 0.5
   let flightStartY = Math.max(52, window.innerHeight * 0.12)
   let flightStartScale = 0.9
-  let sampleXs = new Float32Array(0)
-  let sampleYs = new Float32Array(0)
   let maxScroll = 0
+  let centerX = flightStartX
+  let travelY = window.innerHeight - flightStartY
+  let amplitude = 120
+  let waveCount = 2.35
+  let waveStart = 0
   const flightScaleBoost = 1.11
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
+  const getWave = progress => (
+    Math.sin((progress * TAU * waveCount) + Math.PI) +
+    (Math.sin((progress * TAU * waveCount * 1.73) + (Math.PI * 0.6)) * 0.34) +
+    (Math.sin((progress * TAU * waveCount * 0.67) + (Math.PI * 1.4)) * 0.2)
+  )
+  const getSlope = progress => (
+    Math.cos((progress * TAU * waveCount) + Math.PI) +
+    (Math.cos((progress * TAU * waveCount * 1.73) + (Math.PI * 0.6)) * 0.34 * 1.73) +
+    (Math.cos((progress * TAU * waveCount * 0.67) + (Math.PI * 1.4)) * 0.2 * 0.67)
+  )
   const refreshFlightStart = () => {
     if (!navLogoImage) {
       flightStartX = window.innerWidth * 0.5
@@ -781,72 +796,31 @@ if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
   }
   const getFlightScale = progress => clamp(flightStartScale + (progress * 0.42), flightStartScale, 1.35)
 
-  const setStaticFlightPosition = () => {
-    const progress = maxScroll > 0 ? clamp(window.scrollY / maxScroll, 0, 1) : 0
-    const scale = getFlightScale(progress)
-
-    scrollFlightIcon.style.transform =
-      `translate(${flightStartX}px, ${flightStartY}px) translate(-50%, -50%) scale(${scale * flightScaleBoost}) scaleX(1) rotate(22deg)`
-  }
-
-  const buildZigzagPath = () => {
+  const measureFlightPath = () => {
     const width = window.innerWidth
     const height = window.innerHeight
     const marginX = Math.max(8, width * 0.08)
-    const startX = flightStartX
-    const startY = flightStartY
     const endY = height - Math.max(64, height * 0.14)
-    const centerX = startX
+    centerX = flightStartX
     const horizontalRoom = Math.min(centerX - marginX, width - centerX - marginX)
-    const amplitude = Math.max(120, Math.min(360, horizontalRoom * 0.95))
-    const waveCount = width < 768 ? 1.8 : 2.35
-    const wavePhase = Math.PI
-    const segments = width < 768 ? 64 : 96
-    const travelY = endY - startY
-    const TWO_PI = Math.PI * 2
 
-    sampleXs = new Float32Array(segments + 1)
-    sampleYs = new Float32Array(segments + 1)
-    sampleXs[0] = startX
-    sampleYs[0] = startY
-
-    for (let index = 1; index <= segments; index += 1) {
-      const t = index / segments
-      const primary = Math.sin((t * TWO_PI * waveCount) + wavePhase)
-      const secondary = Math.sin((t * TWO_PI * (waveCount * 1.73)) + (wavePhase * 0.6))
-      const tertiary = Math.sin((t * TWO_PI * (waveCount * 0.67)) + (wavePhase * 1.4))
-      const blendedWave = primary + (secondary * 0.34) + (tertiary * 0.2)
-      sampleXs[index] = centerX + (blendedWave * amplitude)
-      sampleYs[index] = startY + (travelY * t)
-    }
+    travelY = endY - flightStartY
+    amplitude = Math.max(120, Math.min(360, horizontalRoom * 0.95))
+    waveCount = width < 768 ? 1.8 : 2.35
+    waveStart = getWave(0)
   }
 
   const updateFlightPosition = () => {
     ticking = false
 
-    if (reducedMotionQuery.matches || sampleXs.length === 0) {
-      setStaticFlightPosition()
-      return
-    }
-
     const progress = maxScroll > 0 ? clamp(window.scrollY / maxScroll, 0, 1) : 0
-    const lastIndex = sampleXs.length - 1
-    const fIndex = progress * lastIndex
-    const i0 = fIndex | 0
-    const i1 = i0 < lastIndex ? i0 + 1 : lastIndex
-    const lerp = fIndex - i0
-    const x0 = sampleXs[i0]
-    const y0 = sampleYs[i0]
-    const x = x0 + (sampleXs[i1] - x0) * lerp
-    const y = y0 + (sampleYs[i1] - y0) * lerp
+    const slope = getSlope(progress)
+    const x = reducedMotionQuery.matches ? flightStartX : centerX + ((getWave(progress) - waveStart) * amplitude)
+    const y = reducedMotionQuery.matches ? flightStartY : flightStartY + (travelY * progress)
 
-    const iPrev = i0 > 0 ? i0 - 1 : 0
-    const iNext = i1 < lastIndex ? i1 + 1 : lastIndex
-    const deltaX = sampleXs[iNext] - sampleXs[iPrev]
-
-    if (deltaX > 0.2) {
+    if (slope > 0.02) {
       facingDirection = 'right'
-    } else if (deltaX < -0.2) {
+    } else if (slope < -0.02) {
       facingDirection = 'left'
     }
 
@@ -867,16 +841,26 @@ if (scrollFlight && scrollFlightPath && scrollFlightIcon) {
   const refreshFlightPath = () => {
     refreshFlightStart()
     refreshMaxScroll()
-    buildZigzagPath()
+    measureFlightPath()
     requestFlightUpdate()
   }
 
+  const requestFlightRefresh = () => {
+    if (refreshQueued) return
+
+    refreshQueued = true
+    requestAnimationFrame(() => {
+      refreshQueued = false
+      refreshFlightPath()
+    })
+  }
+
   window.addEventListener('scroll', requestFlightUpdate, { passive: true })
-  window.addEventListener('resize', refreshFlightPath)
-  window.addEventListener('load', refreshFlightPath)
+  window.addEventListener('resize', requestFlightRefresh)
+  window.addEventListener('load', requestFlightRefresh)
 
   if (typeof ResizeObserver !== 'undefined') {
-    new ResizeObserver(refreshMaxScroll).observe(document.documentElement)
+    new ResizeObserver(requestFlightRefresh).observe(document.documentElement)
   }
 
   if (typeof reducedMotionQuery.addEventListener === 'function') {
