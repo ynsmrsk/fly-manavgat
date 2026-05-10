@@ -411,14 +411,28 @@ const initializeHeroClouds = () => {
 
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
 
+  const getCloudPixelRatio = () => {
+    const devicePixelRatio = window.devicePixelRatio || 1
+    const viewportPixels = window.innerWidth * window.innerHeight
+
+    if (viewportPixels > 1400000) return Math.min(devicePixelRatio, 1)
+    if (viewportPixels > 900000) return Math.min(devicePixelRatio, 1.15)
+
+    return Math.min(devicePixelRatio, 1.25)
+  }
+
   let renderer
   try {
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false })
+    renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: false,
+      alpha: false
+    })
   } catch {
     return
   }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  renderer.setPixelRatio(getCloudPixelRatio())
 
   const scene = new THREE.Scene()
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
@@ -553,17 +567,37 @@ const initializeHeroClouds = () => {
   const resize = () => {
     const width = canvas.clientWidth || 1
     const height = canvas.clientHeight || 1
+    const pixelRatio = getCloudPixelRatio()
+
+    renderer.setPixelRatio(pixelRatio)
     renderer.setSize(width, height, false)
-    uniforms.iResolution.value.set(width, height)
+    uniforms.iResolution.value.set(width * pixelRatio, height * pixelRatio)
   }
   resize()
 
   let isVisible = true
   let frameId = 0
-  const start = performance.now()
+  let lastFrameNow = performance.now()
+  let lastScrollY = window.scrollY
+  let cloudTime = 0
+  let cloudSpeed = 1
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
 
-  const renderFrame = now => {
-    uniforms.iTime.value = (now - start) / 1000
+  const renderFrame = (now, animate = true) => {
+    if (animate) {
+      const deltaTime = clamp((now - lastFrameNow) / 1000, 0, 0.08)
+      const scrollDelta = window.scrollY - lastScrollY
+      const scrollVelocity = deltaTime > 0 ? Math.abs(scrollDelta) / deltaTime : 0
+      const scrollBoost = clamp(Math.abs(scrollDelta) / 140, 0, 1.6)
+      const targetSpeed = 1 + clamp(scrollVelocity / 360, 0, 10)
+
+      cloudSpeed += (targetSpeed - cloudSpeed) * clamp(deltaTime * 8, 0, 1)
+      cloudTime += (deltaTime * cloudSpeed) + scrollBoost
+      lastScrollY = window.scrollY
+    }
+
+    lastFrameNow = now
+    uniforms.iTime.value = cloudTime
     renderer.render(scene, camera)
   }
 
@@ -584,7 +618,7 @@ const initializeHeroClouds = () => {
   }
 
   if (reducedMotionQuery.matches) {
-    renderFrame(performance.now())
+    renderFrame(performance.now(), false)
   } else {
     startLoop()
   }
@@ -592,7 +626,7 @@ const initializeHeroClouds = () => {
   if (typeof ResizeObserver !== 'undefined') {
     const observer = new ResizeObserver(() => {
       resize()
-      if (reducedMotionQuery.matches) renderFrame(performance.now())
+      if (reducedMotionQuery.matches) renderFrame(performance.now(), false)
     })
     observer.observe(canvas)
   } else {
@@ -616,8 +650,10 @@ const initializeHeroClouds = () => {
   const handleReducedMotionChange = () => {
     if (reducedMotionQuery.matches) {
       stopLoop()
-      renderFrame(performance.now())
+      renderFrame(performance.now(), false)
     } else {
+      lastFrameNow = performance.now()
+      lastScrollY = window.scrollY
       startLoop()
     }
   }
