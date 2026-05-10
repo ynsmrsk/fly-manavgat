@@ -485,6 +485,76 @@ section.experience {
   color: rgba(255, 255, 255, 0.92);
 }
 
+section.pricing {
+  > div {
+    gap: var(--space-l);
+  }
+}
+
+.price-card {
+  width: min(100%, 44rem);
+  display: grid;
+  gap: var(--space-m);
+  padding: var(--space-m);
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 1.75rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.1) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    0 1rem 2rem rgba(16, 87, 170, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.price-kicker {
+  margin-bottom: var(--space-2xs);
+  max-width: none;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--step--1);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.price-card h3 {
+  color: #ffffff;
+  line-height: 1;
+}
+
+.price-card p {
+  max-width: 34rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.price-summary {
+  display: grid;
+  gap: var(--space-3xs);
+}
+
+.price-summary strong {
+  color: #ffffff;
+  font-size: var(--step-1);
+  line-height: 1.05;
+}
+
+.price-summary span {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: var(--step--1);
+}
+
+.price-action {
+  width: fit-content;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: var(--color-blue-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
 section.gallery {
   > div {
     gap: var(--space-l);
@@ -587,7 +657,7 @@ section.gallery {
 }
 
 section.testimonials {
-  display: grid;
+  display: none;
   gap: var(--space-l);
 
   > div {
