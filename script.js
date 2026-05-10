@@ -578,7 +578,6 @@ const initializeHeroClouds = () => {
   }
   resize()
 
-  let isVisible = true
   let frameId = 0
   let lastFrameNow = performance.now()
   let lastScrollY = window.scrollY
@@ -610,7 +609,7 @@ const initializeHeroClouds = () => {
   }
 
   const startLoop = () => {
-    if (frameId || reducedMotionQuery.matches || !isVisible) return
+    if (frameId || reducedMotionQuery.matches) return
     frameId = requestAnimationFrame(loop)
   }
 
@@ -634,15 +633,6 @@ const initializeHeroClouds = () => {
     observer.observe(canvas)
   } else {
     window.addEventListener('resize', resize)
-  }
-
-  if (typeof IntersectionObserver !== 'undefined') {
-    const visibilityObserver = new IntersectionObserver(entries => {
-      isVisible = entries[0]?.isIntersecting ?? true
-      if (isVisible) startLoop()
-      else stopLoop()
-    })
-    visibilityObserver.observe(canvas)
   }
 
   document.addEventListener('visibilitychange', () => {
