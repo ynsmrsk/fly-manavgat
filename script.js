@@ -363,6 +363,7 @@ const messages = {
 const storageKey = 'locale'
 
 const get = (obj, path) => path.split('.').reduce((acc, key) => acc?.[key], obj)
+const coarsePointerQuery = window.matchMedia('(pointer: coarse)')
 
 const faqLists = [...document.querySelectorAll('[data-faq]')]
 
@@ -418,6 +419,7 @@ const initializeHeroClouds = () => {
     const devicePixelRatio = window.devicePixelRatio || 1
     const viewportPixels = window.innerWidth * window.innerHeight
 
+    if (coarsePointerQuery.matches) return Math.min(devicePixelRatio, 1)
     if (viewportPixels > 1400000) return Math.min(devicePixelRatio, 1)
     if (viewportPixels > 900000) return Math.min(devicePixelRatio, 1.15)
 
@@ -567,9 +569,17 @@ const initializeHeroClouds = () => {
   const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material)
   scene.add(mesh)
 
+  let canvasWidth = 0
+  let canvasHeight = 0
   const resize = () => {
-    const width = canvas.clientWidth || 1
-    const height = canvas.clientHeight || 1
+    const width = Math.ceil(canvas.clientWidth || 1)
+    const height = Math.ceil(canvas.clientHeight || 1)
+
+    if (width === canvasWidth && height === canvasHeight) return
+
+    canvasWidth = width
+    canvasHeight = height
+
     const pixelRatio = getCloudPixelRatio()
 
     renderer.setPixelRatio(pixelRatio)
@@ -626,13 +636,31 @@ const initializeHeroClouds = () => {
   }
 
   if (typeof ResizeObserver !== 'undefined') {
-    const observer = new ResizeObserver(() => {
+    let resizeQueued = false
+    let lastResizeWidth = window.innerWidth
+    const requestResize = () => {
+      const nextWidth = window.innerWidth
+
+      if (coarsePointerQuery.matches && Math.abs(nextWidth - lastResizeWidth) < 1) return
+
+      lastResizeWidth = nextWidth
+      if (resizeQueued) return
+
+      resizeQueued = true
+      requestAnimationFrame(() => {
+        resizeQueued = false
+        resize()
+        if (reducedMotionQuery.matches) renderFrame(performance.now(), false)
+      })
+    }
+    const observer = new ResizeObserver(requestResize)
+    observer.observe(canvas)
+    window.addEventListener('resize', requestResize)
+  } else {
+    window.addEventListener('resize', () => {
       resize()
       if (reducedMotionQuery.matches) renderFrame(performance.now(), false)
     })
-    observer.observe(canvas)
-  } else {
-    window.addEventListener('resize', resize)
   }
 
   document.addEventListener('visibilitychange', () => {
@@ -755,7 +783,15 @@ initializeFaq()
 initializeHeroNavOffset()
 initializeHeroClouds()
 
-window.addEventListener('resize', measureFaqHeights)
+let faqResizeWidth = window.innerWidth
+window.addEventListener('resize', () => {
+  const nextWidth = window.innerWidth
+
+  if (coarsePointerQuery.matches && Math.abs(nextWidth - faqResizeWidth) < 1) return
+
+  faqResizeWidth = nextWidth
+  measureFaqHeights()
+})
 
 const gallery = document.getElementById('galleryGrid')
 const modal = document.getElementById('galleryModal')
@@ -912,8 +948,10 @@ if (scrollFlight && scrollFlightIcon) {
   let ticking = false
   let refreshQueued = false
   let facingDirection = 'left'
-  let flightStartX = window.innerWidth * 0.5
-  let flightStartY = Math.max(52, window.innerHeight * 0.12)
+  let flightViewportWidth = window.innerWidth
+  let flightViewportHeight = window.innerHeight
+  let flightStartX = flightViewportWidth * 0.5
+  let flightStartY = Math.max(52, flightViewportHeight * 0.12)
   let flightStartScale = 0.9
   let sampleXs = new Float32Array(0)
   let sampleYs = new Float32Array(0)
@@ -923,8 +961,8 @@ if (scrollFlight && scrollFlightIcon) {
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
   const refreshFlightStart = () => {
     if (!navLogoImage) {
-      flightStartX = window.innerWidth * 0.5
-      flightStartY = Math.max(52, window.innerHeight * 0.12)
+      flightStartX = flightViewportWidth * 0.5
+      flightStartY = Math.max(52, flightViewportHeight * 0.12)
       flightStartScale = 0.9
       return
     }
@@ -932,8 +970,8 @@ if (scrollFlight && scrollFlightIcon) {
     const logoRect = navLogoImage.getBoundingClientRect()
 
     if (!logoRect.width || !logoRect.height) {
-      flightStartX = window.innerWidth * 0.5
-      flightStartY = Math.max(52, window.innerHeight * 0.12)
+      flightStartX = flightViewportWidth * 0.5
+      flightStartY = Math.max(52, flightViewportHeight * 0.12)
       flightStartScale = 0.9
       return
     }
@@ -949,7 +987,7 @@ if (scrollFlight && scrollFlightIcon) {
     flightStartScale = clamp(logoParachuteTargetWidth / iconBaseWidth, 0.5, 1.1)
   }
   const refreshMaxScroll = () => {
-    maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
+    maxScroll = Math.max(0, document.documentElement.scrollHeight - flightViewportHeight)
   }
   const getFlightScale = progress => clamp(flightStartScale + (progress * 0.42), flightStartScale, 1.35)
 
@@ -962,8 +1000,8 @@ if (scrollFlight && scrollFlightIcon) {
   }
 
   const buildFlightPath = () => {
-    const width = window.innerWidth
-    const height = window.innerHeight
+    const width = flightViewportWidth
+    const height = flightViewportHeight
     const marginX = Math.max(8, width * 0.08)
     const startX = flightStartX
     const startY = flightStartY
@@ -1053,7 +1091,24 @@ if (scrollFlight && scrollFlightIcon) {
   }
 
   window.addEventListener('scroll', requestFlightUpdate, { passive: true })
-  window.addEventListener('resize', requestFlightRefresh)
+  window.addEventListener('resize', () => {
+    const nextWidth = window.innerWidth
+
+    if (coarsePointerQuery.matches && Math.abs(nextWidth - flightViewportWidth) < 1) {
+      refreshMaxScroll()
+      requestFlightUpdate()
+      return
+    }
+
+    flightViewportWidth = nextWidth
+    flightViewportHeight = window.innerHeight
+    requestFlightRefresh()
+  })
+  window.addEventListener('orientationchange', () => {
+    flightViewportWidth = window.innerWidth
+    flightViewportHeight = window.innerHeight
+    requestFlightRefresh()
+  })
   window.addEventListener('load', requestFlightRefresh)
 
   if (typeof ResizeObserver !== 'undefined') {
