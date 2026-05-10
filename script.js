@@ -116,7 +116,8 @@ const messages = {
       telegram_value: '+90 538 584 17 64',
       instagram_label: 'Instagram',
       instagram_value: '@flymanavgat',
-      map_aria: 'Fly Manavgat konum haritası'
+      map_aria: 'Fly Manavgat konum haritası',
+      map_activate: 'Haritayı etkinleştir'
     }
   },
   en: {
@@ -234,7 +235,8 @@ const messages = {
       telegram_value: '+90 538 584 17 64',
       instagram_label: 'Instagram',
       instagram_value: '@flymanavgat',
-      map_aria: 'Fly Manavgat location map'
+      map_aria: 'Fly Manavgat location map',
+      map_activate: 'Activate map'
     }
   },
   ru: {
@@ -352,7 +354,8 @@ const messages = {
       telegram_value: '+90 538 584 17 64',
       instagram_label: 'Instagram',
       instagram_value: '@flymanavgat',
-      map_aria: 'Карта расположения Fly Manavgat'
+      map_aria: 'Карта расположения Fly Manavgat',
+      map_activate: 'Активировать карту'
     }
   }
 }
@@ -723,6 +726,18 @@ document.documentElement.classList.add('js-ready')
 document.querySelectorAll('[data-lang-switch]').forEach(button => {
   button.addEventListener('click', () => {
     applyLocale(button.dataset.langSwitch)
+  })
+})
+
+document.querySelectorAll('.contact-map').forEach(map => {
+  const activateButton = map.querySelector('.contact-map-activate')
+
+  activateButton?.addEventListener('click', () => {
+    map.dataset.active = ''
+  })
+
+  map.addEventListener('mouseleave', () => {
+    delete map.dataset.active
   })
 })
 
