@@ -256,7 +256,7 @@ header.hero {
   position: relative;
   min-height: 100svh;
   margin-top: calc(-1 * var(--nav-height, 0px));
-  padding-block: var(--nav-height, 0px) clamp(2rem, 5vw, 4rem);
+  padding-block: var(--nav-height, 0px) clamp(4rem, 7vw, 6rem);
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -1447,6 +1447,11 @@ section.contact {
 
   header.hero {
     padding-top: calc(var(--nav-height, 0px) + var(--space-xl));
+    padding-bottom: var(--space-2xl);
+
+    h1 {
+      font-size: clamp(2.5rem, 12vw, 5rem);
+    }
   }
 
   section.gallery {
@@ -1489,6 +1494,16 @@ section.contact {
 }
 
 @media (max-width: 36rem) {
+  header.hero {
+    padding-bottom: var(--space-3xl);
+
+    h1 {
+      max-width: 12ch;
+      font-size: clamp(2.2rem, 11vw, 3rem);
+      line-height: 0.96;
+    }
+  }
+
   section.gallery {
     ul#galleryGrid {
       grid-template-columns: 1fr;
