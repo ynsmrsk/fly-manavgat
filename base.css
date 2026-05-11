@@ -1,7 +1,7 @@
 :root {
   --color-blue-light: #1095ed;
   --color-blue-dark: #0563E9;
-  --color-light: #f3f3f3;
+  --color-light: #FFFFFF;
 
   --step--1: clamp(0.7499rem, 0.9808rem + -0.1925vw, 0.9375rem);
   --step-0: clamp(1.125rem, 1.0962rem + 0.1282vw, 1.25rem);
